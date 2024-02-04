@@ -35,10 +35,10 @@ const initialize = (display,config) => {
 	origin.selectAll(".agent").data(agents).enter().append("circle")
 	.attr("class","agent")
 	.attr("r",param.agentsize)
-	.attr("cx",d=>X(d.x))
-	.attr("cy",d=>Y(d.y))
+	.attr("cx",d=>X(d.x)) //questa è la coordinata x del punto, se faccio +300, tutto si sposta a destra
+	.attr("cy",d=>Y(d.y)) //suppongo sia quella y
 	.style("fill",d => {
-		let x = d.theta % (2*Math.PI)
+		let x = d.theta % (2*Math.PI) //qui credo si riferisca alla fase del punto, infatti se faccio +100, ottengo un colore molto acceso
 		if (x<0) x+= 2*Math.PI
 		return paint( x/(2*Math.PI))
 	})
@@ -54,7 +54,7 @@ const go = (display,config) => {
 	
 	
 	display.select("#origin").selectAll(".agent")
-		.attr("cx",d=>X(d.x))
+		.attr("cx",d=>X(d.x)) //qui vale la stessa cosa di prima 
 		.attr("cy",d=>Y(d.y))
 //			.style("fill",d=>paint( (d.theta %   + Math.PI)/(2*Math.PI) % 1 ))
 		.style("fill",d => {
