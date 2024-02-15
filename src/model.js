@@ -41,10 +41,14 @@ const initialize = () => {
 			index: i,
 			x: 2*param.L*(Math.random()-0.5),
 			y: 2*param.L*(Math.random()-0.5),  
+			z: 2*param.L*(Math.random()-0.5),  
+
 			vx : Math.cos(theta),
 			vy : Math.sin(theta),  
+			vz : Math.cos(theta), //da cambiare
 			dx : 0,
 			dy : 0,
+			dz : 0,
 			omega:param.omega,
 			domega:rd(),
 			theta: Math.random()*2*Math.PI,
@@ -60,10 +64,14 @@ const initialize = () => {
 		    index: i,
 			x: 2*param.L*(Math.random()-0.5),
 			y: 2*param.L*(Math.random()-0.5),  
+			z: 2*param.L*(Math.random()-0.5),  
+
 			vx : Math.cos(theta),
 			vy : Math.sin(theta),  
+			vz : Math.cos(theta), //da cambiare
 			dx : 0,
 			dy : 0,
+			dz : 0,
 			omega:param.omega,
 			domega:rd(),
 			theta: Math.random()*2*Math.PI,
@@ -84,12 +92,16 @@ const initialize = () => {
 			let theta = 2*Math.PI*Math.random();
 			  return {
 				index: i,
-				x: 0*2*param.L*(Math.random()-0.5),
-				y: 0*2*param.L*(Math.random()-0.5),  
+				x: 2*param.L*(Math.random()-0.5), //prima c'era 0*2*param.L*(Math.random()-0.5)
+				y: 2*param.L*(Math.random()-0.5),  
+				z: 2*param.L*(Math.random()-0.5),  
+
 				vx : Math.cos(theta),
 				vy : Math.sin(theta),  
+				vz : Math.cos(theta), //da cambiare
 				dx : 0,
 				dy : 0,
+				dz : 0,
 				omega:param.omega,
 				domega:rd(),
 				theta: Math.random()*2*Math.PI,
@@ -105,12 +117,16 @@ const initialize = () => {
 				let theta = 2*Math.PI*Math.random();
 				  return {
 					index: i,
-					x: 0*2*param.L*(Math.random()-0.5),
-					y: 0*2*param.L*(Math.random()-0.5),  
+					x: 2*param.L*(Math.random()-0.5),
+					y: 2*param.L*(Math.random()-0.5),  
+					z: 2*param.L*(Math.random()-0.5),  
+
 					vx : Math.cos(theta),
 					vy : Math.sin(theta),  
+					vz : Math.cos(theta), //da cambiare
 					dx : 0,
 					dy : 0,
+					dz : 0,
 					omega:param.omega,
 					domega:rd(),
 					theta: Math.random()*2*Math.PI,
@@ -130,12 +146,16 @@ const initialize = () => {
 				let theta = 2*Math.PI*Math.random();
 				  return {
 					index: i,
-					x: 0*2*param.L*(Math.random()-0.5),
-					y: 0*2*param.L*(Math.random()-0.5),  
+					x: 2*param.L*(Math.random()-0.5),
+					y: 2*param.L*(Math.random()-0.5),  
+					z: 2*param.L*(Math.random()-0.5),  
+
 					vx : Math.cos(theta),
 					vy : Math.sin(theta),  
+					vz : Math.cos(theta), //da cambiare
 					dx : 0,
 					dy : 0,
+					dz : 0,
 					omega:param.omega,
 					domega:rd(),
 					theta: Math.random()*2*Math.PI,
@@ -149,11 +169,15 @@ const initialize = () => {
 	//console.log("ciao: ",agents);
 	const mvx = meanBy(agents,d=>d.vx)
 	const mvy = meanBy(agents,d=>d.vy)
+	const mvz = meanBy(agents,d=>d.vz)
+
 	const mvx_shared = meanBy(agents_shared,d=>d.vx)
 	const mvy_shared = meanBy(agents_shared,d=>d.vy)
+	const mvz_shared = meanBy(agents_shared,d=>d.vz)
+
 	
-	each(agents,d=>{ d.vx-=mvx; d.vy-=mvy;})
-	each(agents_shared,d=>{ d.vx-=mvx_shared; d.vy-=mvy_shared;})
+	each(agents,d=>{ d.vx-=mvx; d.vy-=mvy;d.vy-=mvz;})
+	each(agents_shared,d=>{ d.vx-=mvx_shared; d.vy-=mvy_shared;d.vz-=mvz_shared;})
 };
 
 function shuffleArray(array) {
@@ -181,7 +205,7 @@ function generateRandomArray(prob, P){
 	prob.fill(0);
 	// Imposta a 1 i valori per gli ultimi 70 elementi del vettore
 	for (var i = Math.floor(P*100); i < 100; i++) {
-	prob[i] = 1;
+		prob[i] = 1;
 	}
 	shuffleArray(prob);
 	return prob

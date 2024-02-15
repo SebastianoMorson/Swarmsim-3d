@@ -2,20 +2,43 @@
 // this function really needs not to be touched and is fairly identical for all explorables
 // it's only used by index.js for setting up the container as a first step.
 
-import * as d3 from "d3"
-import * as widgets from "d3-widgets"
+import * as d3 from "d3";
+import * as widgets from "d3-widgets";
+import * as d3d from "d3-3d";
+
+import {
+	drag,
+	color,
+	select,
+	range,
+	randomUniform,
+	scaleOrdinal,
+	selectAll,
+	schemeCategory10,
+  } from "d3";
+  
+
 
 export default (container_id,config)=>{
 
+
+	//questo controlla la griglia dei comandi
 	const grid = widgets.grid(
 			config.controls_size.width,
 			config.controls_size.height,
-			config.controls_grid.nx,
+			config.controls_grid.nx, 
 			config.controls_grid.ny
 		);
 
-	const container = d3.select("#"+container_id).classed(config.container_class,true);
 
+	//
+	const container = d3.select("#"+container_id).classed(config.container_class,true)
+
+	//const display = NaN;
+	console.log(config)
+	///*
+
+	//questa porzione gestisce il display dei punti
 	const display = container.append("div")
 		.attr("id","display")
 		.attr("class","display-panel")
@@ -26,7 +49,7 @@ export default (container_id,config)=>{
 		.attr("height",config.display_type=="canvas" ? config.display_size.height : null)
 		.attr("viewBox",config.display_type=="canvas" ? null: "0 0 "+config.display_size.width+" "+config.display_size.height)	
 		.style("width","100%")
-
+	//*/
 
 	const controls = container.append("div")
 		.attr("id","controls")
@@ -55,14 +78,19 @@ export default (container_id,config)=>{
 		}
 	}
 
-
+	//config.debug deve essere a false se voglio che non si vedano i puntini
 	if (config.debug){		
 		controls.selectAll(".grid").data(grid.points).enter().append("circle").attr("r",2)
 			.attr("transform",d=>"translate("+d.x+","+d.y+")")
-			.style("fill","black")	
+			.style("fill","red")	
 	}
 	
+	
+
 return { display:display, controls:controls, grid: grid }
+
+
+	
 }
 
 
