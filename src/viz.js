@@ -40,7 +40,6 @@ import {
       const scale = 350;
       const key = (d) => d.id;
       const startAngle = Math.PI / 4;
-      const colorScale = scaleOrdinal(schemeCategory10);
       
       let scatter = [];
       let yLine = [];
@@ -48,6 +47,8 @@ import {
       let beta = 0;
       let alpha = 0;
       let mx, my, mouseX = 0, mouseY = 0;
+      var paint = colors[cfg.simulation.colormap];
+
       
       const svg = select("svg")
           .call(
@@ -89,7 +90,7 @@ import {
         .merge(xGrid)
         .attr("stroke", "black")
         .attr("stroke-width", 0.3)
-        .attr("fill", (d) => (d.ccw ? "#aaa" : "#aaa"))
+        .attr("fill", (d) => (d.ccw ? "#de2209" : "#aaa"))
         .attr("fill-opacity", 0.4)
         .attr("d", grid3d.draw);
   
@@ -110,8 +111,12 @@ import {
         .transition()
         .duration(tt)
         .attr("r", 3)
-        .attr("stroke", (d) => color(colorScale(d.p)).darker(2))
-        .attr("fill", (d) => colorScale(d.p))
+        //.attr("stroke", (d) => color(colorScale(d.p)).darker(2))
+        //.style("fill",d=>paint( (d.p %   + Math.PI)/(2*Math.PI) % 1 ))
+		.style("fill",d => {
+			var x = d.p % (2*Math.PI)
+			if (x<0) x+= 2*Math.PI
+			return paint( x/(2*Math.PI))})
         .attr("opacity", 1)
         .attr("cx", posPointX)
         .attr("cy", posPointY);
@@ -218,8 +223,6 @@ import {
       mouseX = event.x - mx + mouseX;
       mouseY = event.y - my + mouseY;
     }
-  
-    selectAll("button").on("click", init);
   
     init();
   });
