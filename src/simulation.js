@@ -3,22 +3,32 @@
 // this is used by index.js, e.g. to initialize the explorable
 
 import {initialize as model_init, update as model_update, go as model_go} from "./model.js"
-import {initialize as visual_init, update as visual_update, go as visual_go} from "./viz.js"
+import {init as init} from "./viz.js"
 
-function iterate (display,config) {
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
+
+async function iterate (display,config) {
 	model_go();
-	visual_go(display,config);
+	//await sleep(1000);
+	init();
+	//visual_go(display,config);
 };
 
-function initialize (display,config) {	
-	
+async function initialize (display,config) {	
+	console.log("maio");
+	//await sleep(1000);
+	console.log("bau");
 	model_init();
-	visual_init(display,config); 
+	init();
+	//visual_init(display,config); 
 };
 
-function update (display,config) {
+async function update (display,config) {
 	model_update();
-	visual_update(display,config);
+	//await sleep(1000);
+	init();
+	//visual_update(display,config);
 }
 
 export {iterate,initialize,update}
