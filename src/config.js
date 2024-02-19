@@ -16,7 +16,7 @@ export default {
 		adv_slider_size: 200,
 		adv_slider_show: true,
 		adv_slider_gap : 1.25,
-		adv_slider_anchor: {x:1,y:12},
+		adv_slider_anchor: {x:1,y:13},
 
 		toggle_anchor: {x:2,y:10.5}, //bottoni di advanced settings e freezing phase
 		toggle_label_pos:"bottom",

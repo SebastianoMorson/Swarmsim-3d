@@ -6,7 +6,7 @@
 
 [![CC BY 4.0][cc-by-shield]][cc-by]
 
-This explorable illustrates collective behavior of phase coupled oscillators that synchronize and swarm at the same time. Both the rules of collective motion and synchronization are entangled in this model and yield beautiful, magical patterns.
+This explorable illustrates in a 3D manner collective behavior of phase coupled oscillators that synchronize and swarm at the same time. Both the rules of collective motion and synchronization are entangled in this model and yield beautiful, magical patterns.
 
 The explorable is part of the [**Complexity Exporables Collection**](https://www.complexity-explorables.org). For more information about the system and its behavior consult the explorable
 > [**“Swårmalätørs” - Oscillators that sync and swarm - Patterns that emerge when collective motion and synchronization entangle**](https://www.complexity-explorables.org/explorables/swarmalators/)
@@ -38,7 +38,7 @@ The header `<script>` tag loads the bundle, the `<div>` in the document is the c
 Clone repository:
 
 ```shell
-git clone https://github.com/dirkbrockmann/swarmalators.git
+git clone https://github.com/justACuriousIgnorant/Swarmsim-3d
 ```
 
 

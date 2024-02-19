@@ -30,8 +30,6 @@ var prob = new Array(100).fill(0);
 
 const initialize = () => {
 	
-	console.log("Initialized");
-
 	// set/reset timer
 	param.timer={}; param.tick=0;
 	
@@ -166,7 +164,6 @@ const initialize = () => {
 			break;
 	}
 	
-	//console.log("ciao: ",agents);
 	const mvx = meanBy(agents,d=>d.vx)
 	const mvy = meanBy(agents,d=>d.vy)
 	const mvz = meanBy(agents,d=>d.vz)
@@ -231,17 +228,12 @@ const go  = () => {
 	var share_info = false;
 
 	
-	//console.log(P);
 	prob = generateRandomArray(prob, P);
-	//console.log(prob);
-
+	
 	each(agents,n=>{
-		//console.log(share_info);
 		
 		n.dtheta = n.omega*phasemod+varomega*n.domega;
 		each(n.memory,m=>{
-			//console.log(share_info);
-			//console.log(K);
 			if (n.index!=m.index){
 				let d = dist(n,m);
 				let kernel = (1+J*Math.cos(m.theta-n.theta)/d - 1.0/(d*d))/param.N;
@@ -253,7 +245,7 @@ const go  = () => {
 		n.dx*=param.dt;
 		n.dy*=param.dt;
 		n.dtheta*=param.dt;
-	})//})
+	})
 
 	each(agents,n=>{
 		n.x+=n.dx+ddt*sigma*(Math.random()-0.5);
@@ -261,7 +253,7 @@ const go  = () => {
 		n.theta+=n.dtheta;
 		
 		share_info = getRandomElement(prob)==0 ;
-		//console.log(share_info);
+	
 		if(((new Date() - n.last_update)/1000 >= T) || (share_info)){	
 			each (agents, m=>{
 				m.memory[n.index].x = n.x;
@@ -272,14 +264,6 @@ const go  = () => {
 		
 		n.last_update = new Date();
 	}})
-
-	
-
-	//}
-	
-	
-//	console.log(maxBy(agents,a=>a.theta).theta)
-//	console.log(minBy(agents,a=>a.theta).theta)	
 
 }
 
@@ -302,8 +286,6 @@ const update = () => {
 			m.memory[n.index].last_update = new Date();
 		})
 	})
-
-	console.log("Update");
 
 }
 

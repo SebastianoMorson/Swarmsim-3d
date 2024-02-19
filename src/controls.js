@@ -107,12 +107,12 @@ const perturb = widgets.button().actions(["push"])
 const reset_sync = widgets.button().actions(["rewind"])
 const reset_like = widgets.button().actions(["rewind"])
 //modified
-const reset_time = widgets.button().actions(["rewind"])
-const reset_probability = widgets.button().actions(["rewind"])
+//const reset_time = widgets.button().actions(["rewind"])
+//const reset_probability = widgets.button().actions(["rewind"])
 
 // all the buttons in an array
 		
-const buttons = [go,setup,reset,perturb,reset_sync,reset_like, reset_time, reset_probability]; //reset_like, reset_N];
+const buttons = [go,setup,reset,perturb,reset_sync,reset_like]; //reset_like, reset_N];
 
 // here's the important function accessible to the outside, there's flexibility on how
 // to code this. bottomline is that all the widgets get attached to the controls panel,
@@ -166,11 +166,11 @@ export default (controls,grid)=>{
 	reset_like.position(grid.position(cfg.widgets.likebutton_anchor.x,cfg.widgets.likebutton_anchor.y))
 		.size(cfg.widgets.likebutton_size);
 	
-	reset_time.position(grid.position(cfg.widgets.timebutton_anchor.x, cfg.widgets.timebutton_anchor.y))
-		.size(cfg.widgets.timebutton_size);
+	//reset_time.position(grid.position(cfg.widgets.timebutton_anchor.x, cfg.widgets.timebutton_anchor.y))
+	//	.size(cfg.widgets.timebutton_size);
 
-	reset_probability.position(grid.position(cfg.widgets.probability_button_anchor.x, cfg.widgets.probability_button_anchor.y))
-		.size(cfg.widgets.probability_button_size);
+	//reset_probability.position(grid.position(cfg.widgets.probability_button_anchor.x, cfg.widgets.probability_button_anchor.y))
+	//	.size(cfg.widgets.probability_button_size);
 	
 	
 	controls.selectAll(".slider").data(concat(sliders,adv_sliders)).enter().append(widgets.widget);
@@ -196,6 +196,6 @@ export default (controls,grid)=>{
 
 // here are all the exported objects, all the parameters, their associated widgets and the action buttons
 
-export {sliders,adv_sliders,toggles,radios,go,setup,reset,perturb,all_variables,booleans,choices,reset_sync,reset_like,reset_time, reset_probability} //reset_like,
+export {sliders,adv_sliders,toggles,radios,go,setup,reset,perturb,all_variables,booleans,choices,reset_sync,reset_like} //reset_like, reset_time, reset_probability
 
 

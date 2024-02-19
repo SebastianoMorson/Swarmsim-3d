@@ -42,13 +42,13 @@ export default (display,controls,config) => {
 		param.like_attracts_like_strength.widget.reset(controls,0)
 	})
 	
-	ct.reset_time.update(()=>{
-		param.interaction_period.widget.reset(controls,0.5)
-	})
+	//ct.reset_time.update(()=>{
+	//	param.interaction_period.widget.reset(controls,0.5)
+	//})
 
-	ct.reset_probability.update(()=>{
-		param.coupling_probability.widget.reset(controls,1)
-	})
+	//ct.reset_probability.update(()=>{
+	//	param.coupling_probability.widget.reset(controls,1)
+	//})
 
 
 	param.presets.widget.update(() => preset_parameters(controls))
