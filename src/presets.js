@@ -1,12 +1,19 @@
 import param from "./parameters.js"
 
 const presets =  {
-	"Rainbow Ring":{J:0.5,K:0,T:0.1,P:0.8,noise:0,varomega:0,adv:false},
-	"Dancing Circus":{J:0.93,K:-0.88,T:0.1,P:0.8,noise:0,varomega:0,adv:false},
-	"Schizo Wobble":{J:1.0,K:0.51,T:0.1,P:0.8,noise:0,varomega:0.8,adv:true},
-	"Solar Convection":{J:0.1,K:1,T:0.1,P:0.8,noise:0,varomega:0.8,adv:true},
-	"Makes Me Dizzy":{J:1.0,K:.51,T:0.1,P:0.8,noise:0,varomega:0.4439,adv:true},
-	"Fractions":{J:1.0,K:-0.12,T:0.1,P:0.8,noise:0,varomega:0,adv:false}
+	"Static Sync":{J:0.1,K:1,T:0.001,P:1,noise:0,varomega:0,adv:false},
+	"Static Async":{J:0.1,K:-1,T:0.001,P:1,noise:0,varomega:0,adv:false},
+	"Static Phase Wave":{J:1,K:0,T:0.001,P:1,noise:0,varomega:0,adv:false},
+	"Splintered Phase Wave":{J:1,K:-0.1,T:0.001,P:1,noise:0,varomega:0,adv:false},
+	"Active Phase Wave":{J:1,K:-0.75,T:0.001,P:1,noise:0,varomega:0,adv:false},
+
+	
+	"Rainbow Ring":{J:0.5,K:0,T:0.001,P:1,noise:0,varomega:0,adv:false},
+	"Dancing Circus":{J:0.93,K:-0.88,T:0.001,P:1,noise:0,varomega:0,adv:false},
+	"Schizo Wobble":{J:1.0,K:0.51,T:0.001,P:1,noise:0,varomega:0.8,adv:true},
+	"Solar Convection":{J:0.1,K:1,T:0.001,P:1,noise:0,varomega:0.8,adv:true},
+	"Makes Me Dizzy":{J:1.0,K:.51,T:0.001,P:1,noise:0,varomega:0.4439,adv:true},
+	"Fractions":{J:1.0,K:-0.12,T:0.001,P:1,noise:0,varomega:0,adv:false}
 }
 
 

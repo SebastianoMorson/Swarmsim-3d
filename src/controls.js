@@ -3,6 +3,7 @@
 // variables and parameters defined in parameters.js
 
 import * as widgets from "d3-widgets"
+
 import {range,map,toPairs,take,takeRight,concat,each} from "lodash-es"
 
 import cfg from "./config.js"
@@ -26,9 +27,9 @@ add_id_label(choices)
 // making arrays for the three types of parameters
 
 const all_va = toArray(all_variables);
-const va = take(all_va,4) //se metto 3 mi mostra anche il terzo slider, mi sa che regola il numero di slider
+const va = take(all_va,2) //se metto 3 mi mostra anche il terzo slider, mi sa che regola il numero di slider
 
-const adv_va = takeRight(all_va,2)
+const adv_va = takeRight(all_va,4)
 
 const bo = toArray(booleans);
 const ch = toArray(choices);

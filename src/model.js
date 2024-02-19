@@ -45,7 +45,7 @@ const initialize = () => {
 
 			vx : Math.cos(theta),
 			vy : Math.sin(theta),  
-			vz : Math.cos(theta), //da cambiare
+			vz : Math.tan(theta), //da cambiare
 			dx : 0,
 			dy : 0,
 			dz : 0,

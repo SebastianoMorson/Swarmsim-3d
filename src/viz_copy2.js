@@ -110,12 +110,10 @@ var svg = select("svg").call(
     return d.projected.y;
     }
 
-    function posPointZ(d) {
-    return d.projected.z;
-    }
     function processData(data, tt) {
         var points = svg.selectAll("circle");
         points.remove();
+        
         /* ----------- GRID ----------- */
     
         //qui viene specificato l'asse x 

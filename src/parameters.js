@@ -44,6 +44,11 @@ export default {
 		},
 		presets : {
 			choices:[
+				"Static Sync",
+				"Static Async",
+				"Static Phase Wave",
+				"Splintered Phase Wave",
+				"Active Phase Wave",
 				"Makes Me Dizzy",
 				"Fractions",
 				"Rainbow Ring",

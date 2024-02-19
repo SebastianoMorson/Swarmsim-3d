@@ -5,28 +5,22 @@
 import {initialize as model_init, update as model_update, go as model_go} from "./model.js"
 import {init as init} from "./viz.js"
 
-const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 
-
-async function iterate (display,config) {
+function iterate (display,config) {
 	model_go();
-	//await sleep(1000);
 	init();
 	//visual_go(display,config);
 };
 
-async function initialize (display,config) {	
-	console.log("maio");
-	//await sleep(1000);
-	console.log("bau");
+function initialize (display,config) {	
+
 	model_init();
 	init();
 	//visual_init(display,config); 
 };
 
-async function update (display,config) {
+function update (display,config) {
 	model_update();
-	//await sleep(1000);
 	init();
 	//visual_update(display,config);
 }
