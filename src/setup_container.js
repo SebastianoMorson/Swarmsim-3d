@@ -34,10 +34,7 @@ export default (container_id,config)=>{
 	//
 	const container = d3.select("#"+container_id).classed(config.container_class,true)
 
-	//const display = NaN;
-	console.log(config)
-	///*
-
+	
 	//questa porzione gestisce il display dei punti
 	const display = container.append("div")
 		.attr("id","display")

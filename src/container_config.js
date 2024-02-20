@@ -6,7 +6,7 @@ export default {
 	display_type:"svg", // either svg or canvas depending on explorable
 	debug:false,  // if set to true, draws dots on the control panel to help widget placement
 	controls_border:false,
-	display_border:true,
+	display_border:false,
 	debug_lattice:"debug-grid-16",
 	controls_grid:{nx:20,ny:20}, //12 12 regola il numero di elementi all'interno del box 
 	display_size: {width:1500,height:1500}, //500 500

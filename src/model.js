@@ -20,7 +20,7 @@ var agents_shared = [];
 var mem_not_initialized = [];
 var old_time = new Date();
 var current_time = 0;
-var prob = new Array(100).fill(0);
+//var prob = new Array(100).fill(0);
 
 
 
@@ -35,21 +35,28 @@ const initialize = () => {
 	
 	mem_not_initialized = range(param.N).map(i => {
 		let theta = 2*Math.PI*Math.random();
+		let phi = 2*Math.PI*Math.random();
 		  return {
 			index: i,
 			x: 2*param.L*(Math.random()-0.5),
 			y: 2*param.L*(Math.random()-0.5),  
 			z: 2*param.L*(Math.random()-0.5),  
-
+			/*
 			vx : Math.cos(theta),
 			vy : Math.sin(theta),  
 			vz : Math.tan(theta), //da cambiare
+			*/
+			vx : Math.cos(theta)*Math.sin(phi),
+			vy : Math.sin(theta)*Math.sin(phi),  
+			vz : Math.cos(phi),
+
 			dx : 0,
 			dy : 0,
 			dz : 0,
 			omega:param.omega,
 			domega:rd(),
 			theta: Math.random()*2*Math.PI,
+			phi:2*Math.PI*Math.random(),
 			dtheta : 0,
 			last_update: new Date()
 		  };
@@ -58,15 +65,17 @@ const initialize = () => {
 
 	agents = range(param.N).map(i => {
 		let theta = 2*Math.PI*Math.random();
+		let phi = 2*Math.PI*Math.random();
+
 		  return {
 		    index: i,
 			x: 2*param.L*(Math.random()-0.5),
 			y: 2*param.L*(Math.random()-0.5),  
 			z: 2*param.L*(Math.random()-0.5),  
 
-			vx : Math.cos(theta),
-			vy : Math.sin(theta),  
-			vz : Math.cos(theta), //da cambiare
+			vx : Math.cos(theta)*Math.sin(phi),
+			vy : Math.sin(theta)*Math.sin(phi),  
+			vz : Math.cos(phi),
 			dx : 0,
 			dy : 0,
 			dz : 0,
@@ -88,15 +97,16 @@ const initialize = () => {
 			each (agents, n => {
 			n.memory = range(param.N).map(i => {
 			let theta = 2*Math.PI*Math.random();
+			let phi = 2*Math.PI*Math.random();
 			  return {
 				index: i,
 				x: 2*param.L*(Math.random()-0.5), //prima c'era 0*2*param.L*(Math.random()-0.5)
 				y: 2*param.L*(Math.random()-0.5),  
 				z: 2*param.L*(Math.random()-0.5),  
 
-				vx : Math.cos(theta),
-				vy : Math.sin(theta),  
-				vz : Math.cos(theta), //da cambiare
+				vx : Math.cos(theta)*Math.sin(phi),
+				vy : Math.sin(theta)*Math.sin(phi),  
+				vz : Math.cos(phi),
 				dx : 0,
 				dy : 0,
 				dz : 0,
@@ -113,15 +123,16 @@ const initialize = () => {
 			each (agents, n => {
 				n.memory = range(param.N).map(i => {
 				let theta = 2*Math.PI*Math.random();
+				let phi = 2*Math.PI*Math.random();
 				  return {
 					index: i,
 					x: 2*param.L*(Math.random()-0.5),
 					y: 2*param.L*(Math.random()-0.5),  
 					z: 2*param.L*(Math.random()-0.5),  
 
-					vx : Math.cos(theta),
-					vy : Math.sin(theta),  
-					vz : Math.cos(theta), //da cambiare
+					vx : Math.cos(theta)*Math.sin(phi),
+					vy : Math.sin(theta)*Math.sin(phi),  
+					vz : Math.cos(phi),
 					dx : 0,
 					dy : 0,
 					dz : 0,
@@ -142,15 +153,16 @@ const initialize = () => {
 			each (agents, n => {
 			agents.memory = range(param.N).map(i => {
 				let theta = 2*Math.PI*Math.random();
+				let phi = 2*Math.PI*Math.random();
 				  return {
 					index: i,
 					x: 2*param.L*(Math.random()-0.5),
 					y: 2*param.L*(Math.random()-0.5),  
 					z: 2*param.L*(Math.random()-0.5),  
 
-					vx : Math.cos(theta),
-					vy : Math.sin(theta),  
-					vz : Math.cos(theta), //da cambiare
+					vx : Math.cos(theta)*Math.sin(phi),
+					vy : Math.sin(theta)*Math.sin(phi),  
+					vz : Math.cos(phi),
 					dx : 0,
 					dy : 0,
 					dz : 0,
@@ -176,7 +188,7 @@ const initialize = () => {
 	each(agents,d=>{ d.vx-=mvx; d.vy-=mvy;d.vy-=mvz;})
 	each(agents_shared,d=>{ d.vx-=mvx_shared; d.vy-=mvy_shared;d.vz-=mvz_shared;})
 };
-
+/*
 function shuffleArray(array) {
 	for (var i = array.length - 1; i > 0; i--) {
 	  // Genera un indice casuale compreso tra 0 e i
@@ -208,7 +220,20 @@ function generateRandomArray(prob, P){
 	return prob
 }
 
+*/
+function generaNumeriCasuali(p) {
+    // Genera un numero casuale tra 0 e 1
+    var randomNum = Math.random();
 
+    // Controlla se il numero casuale generato è inferiore a 0.9 (90%)
+    if (randomNum < p) {
+        // Se è inferiore a 0.9, restituisci 0
+        return 0;
+    } else {
+        // Altrimenti, restituisci 1
+        return 1;
+    }
+}
 
 // the go function, this is bundled in simulation.js with the go function of
 // the visualization, typically this is the iteration function of the model that
@@ -228,7 +253,7 @@ const go  = () => {
 	var share_info = false;
 
 	
-	prob = generateRandomArray(prob, P);
+	let prob = generaNumeriCasuali(P); //generateRandomArray(prob, P);
 	
 	each(agents,n=>{
 		
@@ -236,29 +261,36 @@ const go  = () => {
 		each(n.memory,m=>{
 			if (n.index!=m.index){
 				let d = dist(n,m);
-				let kernel = (1+J*Math.cos(m.theta-n.theta)/d - 1.0/(d*d))/param.N;
+				let kernel = (1+J*Math.cos(m.theta-n.theta)/d - 1.0/(d*d*3))/param.N;
 				n.dx += (m.x-n.x)*kernel;
 				n.dy += (m.y-n.y)*kernel;
+				n.dz += (m.z-n.z)*kernel;
 				n.dtheta += K/param.N*Math.sin(m.theta-n.theta)/d;
 			}	
 		})
 		n.dx*=param.dt;
 		n.dy*=param.dt;
+		n.dz*=param.dt;
 		n.dtheta*=param.dt;
+		//n.dphi*=param.dt;
 	})
 
 	each(agents,n=>{
 		n.x+=n.dx+ddt*sigma*(Math.random()-0.5);
 		n.y+=n.dy+ddt*sigma*(Math.random()-0.5);
-		n.theta+=n.dtheta;
-		
-		share_info = getRandomElement(prob)==0 ;
+		n.z+=n.dz+ddt*sigma*(Math.random()-0.5); //to change
+		n.theta+=n.dtheta;//to change
+		//n.phi+=n.dphi;//to change
+
+		share_info = generaNumeriCasuali(P)==0 ;
 	
 		if(((new Date() - n.last_update)/1000 >= T) || (share_info)){	
 			each (agents, m=>{
 				m.memory[n.index].x = n.x;
 				m.memory[n.index].y = n.y;
+				m.memory[n.index].z = n.z;
 				m.memory[n.index].theta = n.theta;
+				//m.memory[n.index].phi = n.phi;
 				m.memory[n.index].last_update = new Date();
 				})
 		
@@ -282,7 +314,9 @@ const update = () => {
 		each (agents, m=>{
 			m.memory[n.index].x = n.x;
 			m.memory[n.index].y = n.y;
+			m.memory[n.index].z = n.z;
 			m.memory[n.index].theta = n.theta;
+			m.memory[n.index].phi = n.phi;
 			m.memory[n.index].last_update = new Date();
 		})
 	})
