@@ -18,6 +18,15 @@ export default {
 		adv_slider_gap : 1.25,
 		adv_slider_anchor: {x:1,y:13},
 
+		zoom_label:"zoom slider",
+		zoom_slider_size: 250, //lunghezza dello slider
+		zoom_slider_show: true,
+		zoom_slider_gap : 1.5, //distanza tra uno slider e l'altro
+		zoom_slider_anchor: {x:40,y:700},
+		zoom_slider_girth: 10, //altezza dello slider (del rettangolo che rappresenta lo slider)
+		zoom_slider_knob:14, //raggio della pallina dello slider
+
+
 		toggle_anchor: {x:2,y:10.5}, //bottoni di advanced settings e freezing phase
 		toggle_label_pos:"bottom",
 		toggle_gap:3.5,
@@ -56,6 +65,8 @@ export default {
 		radio_orientation_init:"vertical",
 		radio_label_position_init: "right",
 		radio_shape_init:"react",
+
+		
 
 
 	},

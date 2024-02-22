@@ -8,6 +8,7 @@
 import {agents} from "./model.js"
 import cfg from "./config.js"
 import colors from "./colormaps.js"
+import param from "./parameters.js"
 
 /**
  * Created with d3-3d, https://github.com/niekes/d3-3d
@@ -30,7 +31,7 @@ let init = (()=>{});
 
 document.addEventListener("DOMContentLoaded", () => {
     const origin = { x: 750, y: 750 };
-    const j = 5;
+    var j = 5;
     const scale = 300;
     const key = (d) => d.id;
     const startAngle = Math.PI / 4;
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     var paint = colors[cfg.simulation.colormap];
 
     
-    const svg = select("svg")
+    var svg = select("svg")
     .call(
     drag()
         .on("drag", dragged)
@@ -53,20 +54,20 @@ document.addEventListener("DOMContentLoaded", () => {
     )
     .append("g");
       
-      const grid3d = gridPlanes3D()
+      var grid3d = gridPlanes3D()
         .rows(11)
         .origin(origin)
         .rotateY(startAngle)
         .rotateX(-startAngle)
         .scale(100);
   
-    const points3d = points3D()
+    var points3d = points3D()
         .origin(origin)
         .rotateY(startAngle)
         .rotateX(-startAngle)
         .scale(scale);
   
-    const yScale3d = lineStrips3D()
+    var yScale3d = lineStrips3D()
         .origin(origin)
         .rotateY(startAngle)
         .rotateX(-startAngle)
@@ -164,12 +165,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   
     init = function() {
+        /*
+        if(param.zoom != NaN){
+            grid3d.scale(100*param.zoom);
+    
+            points3d.scale(scale);
+    
+            yScale3d.scale(scale);
+        }
+        */
         xGrid = [];
         scatter = [];
         yLine = [];
         
-        
-        
+        function findMaxByKey(array, key) {
+            if (array.length === 0) return undefined;
+            
+            let max = array[0][key];
+            for (let i = 1; i < array.length; i++) {
+              if (array[i][key] > max) {
+                max = array[i][key];
+              }
+            }
+            return max;
+          }
+
+        var max = Math.ceil(findMaxByKey(agents, "x"));
+        if (max <= j+1){
+            j = max+2;
+        }
+        grid3d.rows(j*2+1);
         for (let z = -j; z <= j; z++) {
             for (let x = -j; x <= j; x++) {
                 xGrid.push({ x: x, y: j, z: z});
@@ -194,6 +219,14 @@ document.addEventListener("DOMContentLoaded", () => {
             yScale3d([yLine]),
         ];
         processData(data, 0);
+        var zoom = param.zoom.widget.value();
+        if(zoom != NaN){
+            grid3d.scale(100*zoom);
+    
+            points3d.scale(scale*zoom);
+    
+            yScale3d.scale(scale*zoom);
+        }
     }
   
     function dragStart(event) {

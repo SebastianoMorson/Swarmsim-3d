@@ -19,8 +19,7 @@ const load = function (container_id,config=cfg) {
 		const grid = container.grid;
 			
 	// setting up the controls and actions
-	//document.addEventListener("DOMContentLoaded", () => {
-
+	
 		setup_controls(controls,grid); // this adds the actual widgets to the control panel, and connects controls to the parameters for later access
 		
 		setup_interactions(display,controls,config); // this connects actions to the widgets, like starting the simulation, pausing it, resetting variables, anything connected to the change of a widget state.
@@ -28,7 +27,6 @@ const load = function (container_id,config=cfg) {
 	// initializing the system
 		
 		setup_simulation(display,config)
-	//});
 	}
 	
 	export {load,cfg as config};

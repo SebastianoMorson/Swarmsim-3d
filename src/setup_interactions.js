@@ -53,7 +53,11 @@ export default (display,controls,config) => {
 
 	param.presets.widget.update(() => preset_parameters(controls))
 	
-	
+	param.zoom.widget.update(()=>{
+		each(ct.zoom_slider, s =>{
+			controls.select("#slider_"+s.id()).transition(1000);
+		})
+	})
 	param.advanced_settings.widget.update(()=>{
 		each(ct.adv_sliders,s=>{
 			controls.select("#slider_"+s.id()).transition(1000).style("opacity",param.advanced_settings.widget.value()?1:0)

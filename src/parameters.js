@@ -22,6 +22,10 @@ export default {
 			range:[-1,1],
 			default:1
 		},
+		zoom:{
+			range : [1,10],
+			default : 1
+		},
 		
 		interaction_period:{
 			range:[0.001,1],
@@ -42,6 +46,7 @@ export default {
 			range : [0,1],
 			default : 0.4439
 		},
+		
 		presets : {
 			choices:[
 				"Static Sync",

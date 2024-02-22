@@ -17,7 +17,6 @@ import {toArray,add_id_label,add_widget,get_variables,get_booleans,get_choices} 
 const all_variables = get_variables(parameters);
 const booleans = get_booleans(parameters);
 const choices = get_choices(parameters);
-
 // adding ids and labels to the variables based on names for the variables, see utils.js for the function add_id_label
 
 add_id_label(all_variables)
@@ -28,9 +27,11 @@ add_id_label(choices)
 
 const all_va = toArray(all_variables);
 const va = take(all_va,2) //se metto 3 mi mostra anche il terzo slider, mi sa che regola il numero di slider
-
-const adv_va = takeRight(all_va,4)
-
+const zoom_slid = [all_va[2]];
+const adv_va = takeRight(all_va,4);
+console.log(typeof(all_va));
+console.log(typeof(zoom_slid));
+console.log(adv_va);
 const bo = toArray(booleans);
 const ch = toArray(choices);
 
@@ -60,6 +61,19 @@ const adv_sliders = map(adv_va,
 			.show(true)
 	);
 
+
+const zoom_slider = map(zoom_slid,
+		v => widgets.slider()
+					.id(v.id)
+					.label(v.label)
+					.range(v.range)
+					.value(v.default)
+					.size(cfg.widgets.zoom_slider_size)
+					.girth(cfg.widgets.zoom_slider_girth)
+					.knob(cfg.widgets.zoom_slider_knob)
+					.position(cfg.widgets.zoom_slider_anchor)
+					.show(true)
+		);
 
 // making the toggle widgets objects, based on the switches
 		
@@ -94,6 +108,7 @@ const radios = map(ch,
 add_widget(bo,toggles);
 add_widget(va,sliders);
 add_widget(adv_va,adv_sliders);
+add_widget(zoom_slid, zoom_slider);
 add_widget(ch,radios);
 
 
@@ -120,6 +135,8 @@ const buttons = [go,setup,reset,perturb,reset_sync,reset_like]; //reset_like, re
 // to place the widgets on the grid. The positional stuff here needs to be adapted
 // to the needs of the explorable
 
+console.log(cfg.widgets.zoom_slider_anchor.x);
+console.log(cfg.widgets.zoom_slider_anchor.y);
 export default (controls,grid)=>{
 
 	const sl_pos=grid.position(cfg.widgets.slider_anchor.x,range(sliders.length)
@@ -128,6 +145,11 @@ export default (controls,grid)=>{
 	const adv_sl_pos=grid.position(cfg.widgets.adv_slider_anchor.x,range(adv_sliders.length)
 			.map(x=>(cfg.widgets.adv_slider_anchor.y+cfg.widgets.adv_slider_gap*x)));
 	
+	
+
+	//const zoom_sl_pos = grid.position(cfg.widgets.zoom_slider_anchor.x,range(zoom_slider.length)
+	//		.map(x=>(cfg.widgets.zoom_slider_anchor.y+cfg.widgets.zoom_slider_gap*x)));
+
 	const tg_pos=grid.position(range(toggles.length)
 			.map(x=>(cfg.widgets.toggle_anchor.x+cfg.widgets.toggle_gap*x)),cfg.widgets.toggle_anchor.y);
 	
@@ -136,7 +158,8 @@ export default (controls,grid)=>{
 
 	sliders.forEach((sl,i) => sl.position(sl_pos[i]));
 	adv_sliders.forEach((sl,i) => sl.position(adv_sl_pos[i]));
-	
+	//zoom_slider.position = zoom_sl_pos[0];
+
 	toggles.forEach((tg,i) => tg.position(tg_pos[i]).labelposition(cfg.widgets.toggle_label_pos));
 
 
@@ -173,11 +196,12 @@ export default (controls,grid)=>{
 	//	.size(cfg.widgets.probability_button_size);
 	
 	
-	controls.selectAll(".slider").data(concat(sliders,adv_sliders)).enter().append(widgets.widget);
+	controls.selectAll(".slider").data(concat(sliders,adv_sliders, zoom_slider)).enter().append(widgets.widget);
 	controls.selectAll(".toggle").data(toggles).enter().append(widgets.widget);
 	controls.selectAll(".button").data(buttons).enter().append(widgets.widget);
 	controls.selectAll(".radio").data(radios).enter().append(widgets.widget)
 	
+
 	each(adv_sliders,s=>{
 		controls.select("#slider_"+s.id()).style("opacity",parameters.advanced_settings.widget.value()?1:0)
 	})
@@ -196,6 +220,6 @@ export default (controls,grid)=>{
 
 // here are all the exported objects, all the parameters, their associated widgets and the action buttons
 
-export {sliders,adv_sliders,toggles,radios,go,setup,reset,perturb,all_variables,booleans,choices,reset_sync,reset_like} //reset_like, reset_time, reset_probability
+export {sliders,adv_sliders, zoom_slider, toggles,radios,go,setup,reset,perturb,all_variables,booleans,choices,reset_sync,reset_like} //reset_like, reset_time, reset_probability
 
 

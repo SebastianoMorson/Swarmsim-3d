@@ -261,7 +261,7 @@ const go  = () => {
 		each(n.memory,m=>{
 			if (n.index!=m.index){
 				let d = dist(n,m);
-				let kernel = (1+J*Math.cos(m.theta-n.theta)/d - 1.0/(d*d*3))/param.N;
+				let kernel = (1+J*Math.cos(m.theta-n.theta)/d - 1.0/(d*d*d))/param.N;
 				n.dx += (m.x-n.x)*kernel;
 				n.dy += (m.y-n.y)*kernel;
 				n.dz += (m.z-n.z)*kernel;
