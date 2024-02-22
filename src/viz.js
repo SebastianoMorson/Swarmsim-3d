@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         points.exit().remove();
     
         /* ----------- y-Scale ----------- */
-    
+        /*
         const yScale = svg.selectAll("path.yScale").data(data[2]);
     
         yScale
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
         yScale.exit().remove();
     
         /* ----------- y-Scale Text ----------- */
-        
+        /*
         const yText = svg.selectAll("text.yText").data(data[2][0]);
     
         yText
@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
         yText.exit().remove();
         
-    
+        */
         selectAll(".d3-3d").sort(points3d.sort);
     }
   
@@ -208,15 +208,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 id: val.index,
             });
         });
-    
+        /*
         range(0, 1, j).forEach((d) => {
             yLine.push({ x: -j, y: -d, z: -j });
         });
-        
+        */
         const data = [
             grid3d(xGrid),
-            points3d(scatter),
-            yScale3d([yLine]),
+            points3d(scatter)
+            //yScale3d([yLine]),
         ];
         processData(data, 0);
         var zoom = param.zoom.widget.value();
@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
             points3d.scale(scale*zoom);
     
-            yScale3d.scale(scale*zoom);
+            //yScale3d.scale(scale*zoom);
         }
     }
   
@@ -241,7 +241,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = [
             grid3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)(xGrid),
             points3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)(scatter),
-            yScale3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)([yLine]),
+            //yScale3d.rotateY(beta + startAngle).rotateX(alpha - startAngle)([yLine]),
         ];
     
         processData(data, 0);
