@@ -32,9 +32,9 @@ let destroy_plot = (()=>{});
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const origin = { x: 750, y: 750 };
+    const origin = { x: 500, y: 400 };
     var j = 5;
-    const scale = 300;
+    const scale = 250;
     const key = (d) => d.id;
     const startAngle = Math.PI / 4;
     
@@ -56,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .on("end", dragEnd)
     )
     .append("g");
+
     var grid3d = gridPlanes3D()
     .rows(11)
     .origin(origin)
@@ -162,7 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
   
     init = function() {
-        console.log("miaoaahahah");
         scatter = [];
         yLine = [];
         xGrid = [];

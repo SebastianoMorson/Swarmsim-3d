@@ -33,7 +33,7 @@ export default {
 		toggle_size:12,
 
 		viz_label:"2D/3D",
-		viz_anchor: {x:750, y:20},
+		viz_anchor: {x:750, y:75},
 		viz_label_pos:"bottom",
 		viz_size:12,
 
@@ -69,7 +69,7 @@ export default {
 		radio_size_mem:180,
 		radio_orientation_mem:"vertical",
 		radio_label_position_mem: "right",
-		radio_shape_mem:"react",
+		radio_shape_mem:"rect",
 
 		
 
