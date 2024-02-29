@@ -27,7 +27,7 @@ const startstop = (display,config) => {
 
 // this function is called by index.js to connect actions and update functions to the explorables.
 // once this is called, all widgets are usable in the controls panel
-
+var mode = true;
 export default (display,controls,config) => {
 	
 	ct.reset.update(()=>resetparameters(controls))	// one button gets the resetparameters() method defined in resetparameters.js
@@ -55,7 +55,7 @@ export default (display,controls,config) => {
 	
 	param.zoom.widget.update(()=>{
 		each(ct.zoom_slider, s =>{
-			controls.select("#slider_"+s.id()).transition(1000);
+			controls.select("#slider_"+s.id()).transition(0);
 		})
 	})
 	param.advanced_settings.widget.update(()=>{
@@ -64,5 +64,11 @@ export default (display,controls,config) => {
 		})
 	})
 	
+	param.viz_switch.widget.update(()=>{
+		mode = param.viz_switch.widget.value();
+	});
+
+	
 }
+export {mode}
 

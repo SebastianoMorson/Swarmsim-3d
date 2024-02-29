@@ -4,7 +4,7 @@
 
 export default {
 	display_type:"svg", // either svg or canvas depending on explorable
-	debug:false,  // if set to true, draws dots on the control panel to help widget placement
+	debug:true,  // if set to true, draws dots on the control panel to help widget placement
 	controls_border:false,
 	display_border:false,
 	debug_lattice:"debug-grid-16",

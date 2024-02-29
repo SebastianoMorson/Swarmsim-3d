@@ -14,11 +14,13 @@ export default {
 		omega:1.0,		 	
 		
 		synchronization_strength: {
+			label:"K",
 			range:[-1,1],
 			default:0.51
 		},
 		
 		like_attracts_like_strength: {
+			label:"J",
 			range:[-1,1],
 			default:1
 		},
@@ -74,12 +76,20 @@ export default {
 			default:0
 		},
 	
+		viz_switch:{
+			label:"2D/3D",
+			default: true
+		},
+
 		freeze_phase: {
 			default: false
 		},
 		advanced_settings: {
 			default: false
-		}
+		},
+		
+		
+		
 
 }
 

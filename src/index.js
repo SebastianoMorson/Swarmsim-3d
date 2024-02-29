@@ -8,7 +8,7 @@ import setup_controls from "./controls.js"
 import {initialize as setup_simulation} from "./simulation.js"
 
   
-const load = function (container_id,config=cfg) {
+const load3d = function (container_id,config=cfg) {
 
 	// setting up the container
 		
@@ -29,7 +29,31 @@ const load = function (container_id,config=cfg) {
 		setup_simulation(display,config)
 	}
 	
-	export {load,cfg as config};
+	export {load3d,cfg as config};
   
+/*
+const load2d = function (container_id,2dconfig=cfg) {
 
+	// setting up the container
+		
+		const container = setup_container(container_id,2dconfig);
+	
+		const display = container.display;
+		const controls = container.controls;
+		const grid = container.grid;
+			
+	// setting up the controls and actions
+	
+		setup_controls(controls,grid); // this adds the actual widgets to the control panel, and connects controls to the parameters for later access
+		
+		setup_interactions(display,controls,2dconfig); // this connects actions to the widgets, like starting the simulation, pausing it, resetting variables, anything connected to the change of a widget state.
+	
+	// initializing the system
+		
+		setup_simulation(display,2dconfig)
+	}
+	
+	export {load2d,cfg as 2dconfig};
+	
 
+*/

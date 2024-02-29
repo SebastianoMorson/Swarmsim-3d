@@ -16,6 +16,7 @@ import {toArray,add_id_label,add_widget,get_variables,get_booleans,get_choices} 
 
 const all_variables = get_variables(parameters);
 const booleans = get_booleans(parameters);
+
 const choices = get_choices(parameters);
 // adding ids and labels to the variables based on names for the variables, see utils.js for the function add_id_label
 
@@ -29,10 +30,11 @@ const all_va = toArray(all_variables);
 const va = take(all_va,2) //se metto 3 mi mostra anche il terzo slider, mi sa che regola il numero di slider
 const zoom_slid = [all_va[2]];
 const adv_va = takeRight(all_va,4);
-console.log(typeof(all_va));
-console.log(typeof(zoom_slid));
-console.log(adv_va);
-const bo = toArray(booleans);
+
+var bo = toArray(booleans,2);
+const viz_bo = [bo[0]];
+console.log(viz_bo);
+bo = takeRight(bo, 2);
 const ch = toArray(choices);
 
 // making the slider widgets objects, based on the variables
@@ -86,6 +88,13 @@ const toggles = map(bo,
 		
 toggles[1].label(cfg.widgets.adv_label)
 
+const viz_switch = map(viz_bo, 
+	v => widgets.toggle()
+				.id(v.id)
+				.label(v.label)
+				.value(v.default)					
+	);
+viz_switch[0].label(cfg.widgets.viz_label);
 // making the radio widgets objects, based on the choices
 		
 const radios = map(ch, 
@@ -111,6 +120,7 @@ add_widget(adv_va,adv_sliders);
 add_widget(zoom_slid, zoom_slider);
 add_widget(ch,radios);
 
+add_widget(viz_bo, viz_switch);
 
 // This is generic for many explorables, the action buttons, play/pause, back and rewind
 // there are some explorables that have different buttons, so one needs to code this here.
@@ -135,8 +145,6 @@ const buttons = [go,setup,reset,perturb,reset_sync,reset_like]; //reset_like, re
 // to place the widgets on the grid. The positional stuff here needs to be adapted
 // to the needs of the explorable
 
-console.log(cfg.widgets.zoom_slider_anchor.x);
-console.log(cfg.widgets.zoom_slider_anchor.y);
 export default (controls,grid)=>{
 
 	const sl_pos=grid.position(cfg.widgets.slider_anchor.x,range(sliders.length)
@@ -154,20 +162,23 @@ export default (controls,grid)=>{
 			.map(x=>(cfg.widgets.toggle_anchor.x+cfg.widgets.toggle_gap*x)),cfg.widgets.toggle_anchor.y);
 	
 	const ra_pos=grid.position(cfg.widgets.radio_anchor.x,cfg.widgets.radio_anchor.y);		
-	const ra_pos_init = grid.position(cfg.widgets.radio_anchor_init.x, cfg.widgets.radio_anchor_init.y);
+	const ra_pos_mem = grid.position(cfg.widgets.radio_anchor_mem.x, cfg.widgets.radio_anchor_mem.y);
 
 	sliders.forEach((sl,i) => sl.position(sl_pos[i]));
+
 	adv_sliders.forEach((sl,i) => sl.position(adv_sl_pos[i]));
 	//zoom_slider.position = zoom_sl_pos[0];
 
 	toggles.forEach((tg,i) => tg.position(tg_pos[i]).labelposition(cfg.widgets.toggle_label_pos));
-
+	viz_switch.forEach((tg,i) => tg.position(cfg.widgets.viz_anchor).labelposition(cfg.widgets.viz_label_pos));
 
 	radios[0].position(ra_pos)
 		.size(cfg.widgets.radio_size).shape(cfg.widgets.radio_shape)
 
-	radios[1].position(ra_pos_init)
-		.size(cfg.widgets.radio_size).shape(cfg.widgets.radio_shape_init);
+	radios[1].position(ra_pos_mem)
+		.size(cfg.widgets.radio_size_mem).shape(cfg.widgets.radio_shape_mem);
+	
+
 	
 	go.position(grid.position(cfg.widgets.playbutton_anchor.x,cfg.widgets.playbutton_anchor.y))
 		.size(cfg.widgets.playbutton_size);
@@ -198,6 +209,8 @@ export default (controls,grid)=>{
 	
 	controls.selectAll(".slider").data(concat(sliders,adv_sliders, zoom_slider)).enter().append(widgets.widget);
 	controls.selectAll(".toggle").data(toggles).enter().append(widgets.widget);
+	controls.selectAll(".toggle").data(viz_switch).enter().append(widgets.widget);
+	
 	controls.selectAll(".button").data(buttons).enter().append(widgets.widget);
 	controls.selectAll(".radio").data(radios).enter().append(widgets.widget)
 	
@@ -220,6 +233,6 @@ export default (controls,grid)=>{
 
 // here are all the exported objects, all the parameters, their associated widgets and the action buttons
 
-export {sliders,adv_sliders, zoom_slider, toggles,radios,go,setup,reset,perturb,all_variables,booleans,choices,reset_sync,reset_like} //reset_like, reset_time, reset_probability
+export {sliders,adv_sliders, toggles, zoom_slider, viz_switch, radios,go,setup,reset,perturb,all_variables,booleans,choices,reset_sync,reset_like} //reset_like, reset_time, reset_probability
 
 

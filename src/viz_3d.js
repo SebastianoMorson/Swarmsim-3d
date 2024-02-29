@@ -5,7 +5,7 @@
 // the observables and variables exported in model.js, e.g. the quantities
 // used for the actual visualizations are also imported to viz.js
 
-import {agents} from "./model.js"
+import {agents} from "./model_3d.js"
 import cfg from "./config.js"
 import colors from "./colormaps.js"
 import param from "./parameters.js"
@@ -28,8 +28,10 @@ import {
 import { toInteger } from "lodash-es";
 
 let init = (()=>{});
+let destroy_plot = (()=>{});
 
 document.addEventListener("DOMContentLoaded", () => {
+
     const origin = { x: 750, y: 750 };
     var j = 5;
     const scale = 300;
@@ -43,8 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let alpha = 0;
     let mx, my, mouseX = 0, mouseY = 0;
     var paint = colors[cfg.simulation.colormap];
-
     
+
+
     var svg = select("svg")
     .call(
     drag()
@@ -53,31 +56,32 @@ document.addEventListener("DOMContentLoaded", () => {
         .on("end", dragEnd)
     )
     .append("g");
-      
-      var grid3d = gridPlanes3D()
-        .rows(11)
-        .origin(origin)
-        .rotateY(startAngle)
-        .rotateX(-startAngle)
-        .scale(100);
-  
+    var grid3d = gridPlanes3D()
+    .rows(11)
+    .origin(origin)
+    .rotateY(startAngle)
+    .rotateX(-startAngle)
+    .scale(100);
+
     var points3d = points3D()
-        .origin(origin)
-        .rotateY(startAngle)
-        .rotateX(-startAngle)
-        .scale(scale);
+    .origin(origin)
+    .rotateY(startAngle)
+    .rotateX(-startAngle)
+    .scale(scale);
+    
+
+    function posPointX(d) {
+        return d.projected.x;
+    }
   
-    var yScale3d = lineStrips3D()
-        .origin(origin)
-        .rotateY(startAngle)
-        .rotateX(-startAngle)
-        .scale(scale);
-  
+    function posPointY(d) {
+        return d.projected.y;
+    }
+
     function processData(data, tt) {
         /* ----------- GRID ----------- */
     
         const xGrid = svg.selectAll("path.grid").data(data[0], key);
-    
         xGrid
             .enter()
             .append("path")
@@ -156,28 +160,13 @@ document.addEventListener("DOMContentLoaded", () => {
         selectAll(".d3-3d").sort(points3d.sort);
     }
   
-    function posPointX(d) {
-        return d.projected.x;
-    }
-  
-    function posPointY(d) {
-        return d.projected.y;
-    }
   
     init = function() {
-        /*
-        if(param.zoom != NaN){
-            grid3d.scale(100*param.zoom);
-    
-            points3d.scale(scale);
-    
-            yScale3d.scale(scale);
-        }
-        */
-        xGrid = [];
+        console.log("miaoaahahah");
         scatter = [];
         yLine = [];
-        
+        xGrid = [];
+
         function findMaxByKey(array, key) {
             if (array.length === 0) return undefined;
             
@@ -252,8 +241,28 @@ document.addEventListener("DOMContentLoaded", () => {
         mouseY = event.y - my + mouseY;
     }
   
+    destroy_plot = function destroy_plot(){
+        
+        var svg = select("svg");
+        svg.call(()=>{});
+        const points = svg.selectAll("circle");
+        const xGrid = svg.selectAll("path.grid");
+
+        /*
+        svg.selectAll("*").remove();*/
+
+        points.remove();
+        xGrid.remove();
+        console.log("distruzioneee");
+    }
+   
+
+
     init();
+
+
 });
 
 
-  export {init}
+
+  export {init, destroy_plot}

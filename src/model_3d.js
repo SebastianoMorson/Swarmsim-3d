@@ -4,7 +4,7 @@
 
 import param from "./parameters.js"
 import {each,range,map,mean,meanBy,maxBy,minBy} from "lodash-es"
-import {dist} from "./utils"
+import {dist_3d} from "./utils.js"
 import {randomNormal} from "d3"
 
 const L = param.L;
@@ -188,39 +188,6 @@ const initialize = () => {
 	each(agents,d=>{ d.vx-=mvx; d.vy-=mvy;d.vy-=mvz;})
 	each(agents_shared,d=>{ d.vx-=mvx_shared; d.vy-=mvy_shared;d.vz-=mvz_shared;})
 };
-/*
-function shuffleArray(array) {
-	for (var i = array.length - 1; i > 0; i--) {
-	  // Genera un indice casuale compreso tra 0 e i
-	  var randomIndex = Math.floor(Math.random() * (i + 1));
-  
-	  // Scambia gli elementi con l'indice casuale
-	  var temp = array[i];
-	  array[i] = array[randomIndex];
-	  array[randomIndex] = temp;
-	}
-  }
-
-function getRandomElement(array) {
-	// Genera un indice casuale compreso tra 0 e la lunghezza dell'array - 1
-	var randomIndex = Math.floor(Math.random() * 99);
-  
-	// Restituisci l'elemento corrispondente all'indice casuale
-	return array[randomIndex];
-}
-
-
-function generateRandomArray(prob, P){
-	prob.fill(0);
-	// Imposta a 1 i valori per gli ultimi 70 elementi del vettore
-	for (var i = Math.floor(P*100); i < 100; i++) {
-		prob[i] = 1;
-	}
-	shuffleArray(prob);
-	return prob
-}
-
-*/
 function generaNumeriCasuali(p) {
     // Genera un numero casuale tra 0 e 1
     var randomNum = Math.random();
@@ -260,7 +227,7 @@ const go  = () => {
 		n.dtheta = n.omega*phasemod+varomega*n.domega;
 		each(n.memory,m=>{
 			if (n.index!=m.index){
-				let d = dist(n,m);
+				let d = dist_3d(n,m);
 				let kernel = (1+J*Math.cos(m.theta-n.theta)/d - 1.0/(d*d*d))/param.N;
 				n.dx += (m.x-n.x)*kernel;
 				n.dy += (m.y-n.y)*kernel;

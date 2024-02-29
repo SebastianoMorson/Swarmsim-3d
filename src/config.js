@@ -32,6 +32,11 @@ export default {
 		toggle_gap:3.5,
 		toggle_size:12,
 
+		viz_label:"2D/3D",
+		viz_anchor: {x:750, y:20},
+		viz_label_pos:"bottom",
+		viz_size:12,
+
 		playbutton_size: 100,
 		playbutton_anchor:{x:2.5,y:2},
 		
@@ -60,11 +65,11 @@ export default {
 		radio_label_position:"right",
 		radio_shape:"rect",
 
-		radio_anchor_init:{x:16, y:10.5},
-		radio_size_init:180,
-		radio_orientation_init:"vertical",
-		radio_label_position_init: "right",
-		radio_shape_init:"react",
+		radio_anchor_mem:{x:16, y:10.5},
+		radio_size_mem:180,
+		radio_orientation_mem:"vertical",
+		radio_label_position_mem: "right",
+		radio_shape_mem:"react",
 
 		
 

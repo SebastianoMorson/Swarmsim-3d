@@ -17,11 +17,17 @@ const get_choices = (p) => pickBy(p, v =>  has(v, "choices"))
 const deg2rad = d3.scaleLinear().domain([0,360]).range([0,2*Math.PI]);
 const rad2deg = d3.scaleLinear().range([0,360]).domain([0,2*Math.PI]);
 
-const dist = (a,b) => {
+const dist_3d = (a,b) => {
 	const dx = (a.x-b.x);
 	const dy = (a.y-b.y);
 	const dz = (a.z - b.z);
 	return Math.sqrt(dx*dx + dy*dy+dz*dz);
 }
 
-export {toArray,add_id_label,add_widget,get_variables,get_booleans,get_choices,deg2rad,rad2deg,dist}
+const dist_2d = (a,b) => {
+	const dx = (a.x-b.x);
+	const dy = (a.y-b.y);
+	return Math.sqrt(dx*dx + dy*dy);
+}
+
+export {toArray,add_id_label,add_widget,get_variables,get_booleans,get_choices,deg2rad,rad2deg,dist_3d, dist_2d}
