@@ -2,14 +2,14 @@
 // it adds the widgets to the container and generates attaches the widget to the 
 // variables and parameters defined in parameters.js
 
-import * as widgets from "d3-widgets"
+import * as widgets from "./d3-widgets/"
 
 import {range,map,toPairs,take,takeRight,concat,each} from "lodash-es"
 
 import cfg from "./config.js"
 import parameters from "./parameters.js"
 import preset_parameters from "./presets.js"
-import {toArray,add_id_label,add_widget,get_variables,get_booleans,get_choices} from "./utils.js"
+import {toArray,add_id_label,change_label, add_widget,get_variables,get_booleans,get_choices} from "./utils.js"
 
 
 // defined variables for variables, booleans and choices, extracting the information from parameters.js
@@ -24,6 +24,9 @@ add_id_label(all_variables)
 add_id_label(booleans)
 add_id_label(choices)
 
+change_label(all_variables, "Synchronization strength", "Synchronization strength (K)")
+change_label(all_variables, "Like attracts like strength", "Like attracts like strength (J)")
+
 // making arrays for the three types of parameters
 
 const all_va = toArray(all_variables);
@@ -33,7 +36,6 @@ const adv_va = takeRight(all_va,4);
 
 var bo = toArray(booleans,2);
 const viz_bo = [bo[0]];
-console.log(viz_bo);
 bo = takeRight(bo, 2);
 const ch = toArray(choices);
 
@@ -52,6 +54,10 @@ const sliders = map(va,
 		);
 
 
+map(va,
+	v =>console.log(v.label)
+	);
+console.log("baubua");
 
 const adv_sliders = map(adv_va,
 	v => widgets.slider()
@@ -163,6 +169,11 @@ export default (controls,grid)=>{
 	
 	const ra_pos=grid.position(cfg.widgets.radio_anchor.x,cfg.widgets.radio_anchor.y);		
 	const ra_pos_mem = grid.position(cfg.widgets.radio_anchor_mem.x, cfg.widgets.radio_anchor_mem.y);
+	const ra_pos_extra = grid.position(cfg.widgets.radio_anchor_extra.x, cfg.widgets.radio_anchor_extra.y);
+	
+	//var testo = document.createElementNS("http://www.w3.org/2000/svg", "text");
+	
+	
 
 	sliders.forEach((sl,i) => sl.position(sl_pos[i]));
 
@@ -175,7 +186,11 @@ export default (controls,grid)=>{
 	radios[0].position(ra_pos)
 		.size(cfg.widgets.radio_size).shape(cfg.widgets.radio_shape)
 
-	radios[1].position(ra_pos_mem)
+
+	radios[1].position(ra_pos_extra)
+		.size(cfg.widgets.radio_size_extra).shape(cfg.widgets.radio_shape_extra);
+
+	radios[2].position(ra_pos_mem)
 		.size(cfg.widgets.radio_size_mem).shape(cfg.widgets.radio_shape_mem);
 	
 
@@ -211,7 +226,7 @@ export default (controls,grid)=>{
 	controls.selectAll(".toggle").data(toggles).enter().append(widgets.widget);
 	controls.selectAll(".toggle").data(viz_switch).enter().append(widgets.widget);
 	
-	controls.selectAll(".button").data(buttons).enter().append(widgets.widget);
+	controls.selectAll(".button").data(buttons).enter().append(widgets.widget)
 	controls.selectAll(".radio").data(radios).enter().append(widgets.widget)
 	
 

@@ -14,13 +14,11 @@ export default {
 		omega:1.0,		 	
 		
 		synchronization_strength: {
-			label:"K",
 			range:[-1,1],
 			default:0.51
 		},
 		
 		like_attracts_like_strength: {
-			label:"J",
 			range:[-1,1],
 			default:1
 		},
@@ -55,7 +53,13 @@ export default {
 				"Static Async",
 				"Static Phase Wave",
 				"Splintered Phase Wave",
-				"Active Phase Wave",
+				"Active Phase Wave",		
+			],
+			default: 0
+		},
+
+		extra_presets :{
+			choices:[
 				"Makes Me Dizzy",
 				"Fractions",
 				"Rainbow Ring",

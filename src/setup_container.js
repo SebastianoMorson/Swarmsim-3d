@@ -3,9 +3,8 @@
 // it's only used by index.js for setting up the container as a first step.
 
 import * as d3 from "d3";
-import * as widgets from "d3-widgets";
+import * as widgets from "./d3-widgets/";
 import * as d3d from "d3-3d";
-
 import {
 	drag,
 	color,
@@ -30,11 +29,11 @@ export default (container_id,config)=>{
 			config.controls_grid.ny
 		);
 
-
-	//
-	const container = d3.select("#"+container_id).classed(config.container_class,true)
-
 	
+
+	const container = d3.select("#"+container_id).classed(config.container_class,true)
+	
+
 	//questa porzione gestisce il display dei punti
 	const display = container.append("div")
 		.attr("id","display")

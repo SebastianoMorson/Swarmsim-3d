@@ -1,0 +1,61 @@
+.widget {
+	stroke: rgb(150,150,150);
+	stroke-width: 1px;
+	cursor: pointer;
+	pointer-events:all;
+	stroke-opacity:1;
+	fill-opacity:1;
+	fill: #ccc;
+	font-size:16px;
+}
+
+.widget .title {
+	font-size:20px;
+    fill:black;
+    stroke:none;
+	text-anchor:middle;
+}
+
+.widget .label {
+    fill:black;
+    stroke:none;
+}
+
+.widget .lit{
+	fill: #eee;
+}
+
+
+.button > .symbol, .radio > .radiobutton > .symbol {
+	fill: #fff;
+	fill-rule:nonzero;
+	pointer-events: none;
+}
+
+.widget .symbol.selected, .toggle.selected, .widget .symbol.selected.lit{
+	fill: #000;
+}
+
+
+.widget .symbol.lit {
+	fill: #bbb;
+}
+
+.slider > .track, .toggle > .track {
+	pointer-events: none;
+}
+
+.slider > .track_overlay, .toggle > .track_overlay {
+  pointer-events: all;
+  cursor: pointer;
+  fill: transparent;
+  stroke: transparent;
+}
+
+.slider > .handle, .toggle > .handle {
+  fill: #fff;
+}
+
+
+
+

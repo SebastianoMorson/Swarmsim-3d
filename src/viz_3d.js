@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const origin = { x: 500, y: 400 };
     var j = 5;
-    const scale = 250;
+    const scale = 220;
     const key = (d) => d.id;
     const startAngle = Math.PI / 4;
     

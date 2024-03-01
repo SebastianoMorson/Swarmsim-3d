@@ -5,6 +5,15 @@ import {map, replace, capitalize, each, has, isBoolean, pickBy, toPairs, pick } 
 
 const add_id_label = (x) => map(toPairs(x), d => {d[1]["id"]=d[0]; d[1]["label"]=replace(capitalize(d[0]),/_/g," ")} );
 
+
+const change_label = function (list, olabel, nlabel){
+	each(list, e => {
+		if(e.label == olabel){
+			e.label = nlabel;
+		}
+	});
+};
+
 const toArray = (x) => map(toPairs(x),d=>d[1]);
 
 const add_widget = (p,w) => each(p,(v,i) => v["widget"]=w[i]);	
@@ -30,4 +39,4 @@ const dist_2d = (a,b) => {
 	return Math.sqrt(dx*dx + dy*dy);
 }
 
-export {toArray,add_id_label,add_widget,get_variables,get_booleans,get_choices,deg2rad,rad2deg,dist_3d, dist_2d}
+export {toArray,add_id_label,change_label, add_widget,get_variables,get_booleans,get_choices,deg2rad,rad2deg,dist_3d, dist_2d}
