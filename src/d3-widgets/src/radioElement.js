@@ -13,9 +13,14 @@ export default (d,i) => {
 	const n = range(N);
 	const X = scaleLinear().domain([0,N-1]).range([0,d.size()]);
 	const Y = scaleLinear().domain([0,N-1]).range([0,d.size()]);
-	
-	const element = document.createElementNS("http://www.w3.org/2000/svg", "g");
+	const title = d.title()
 
+	const element = document.createElementNS("http://www.w3.org/2000/svg", "g");
+	select(element).append("text").attr("class",styles.label)
+	.text(title).attr("x", -10)
+	.attr("y", -20)
+	//.attr("alignment-baseline",tp.valign)
+	
 	const base = select(element)
 		.attr("class",styles.widget+" "+styles.radio).attr("id", id)
 		.attr("transform","translate("+d.x()+","+d.y()+")")

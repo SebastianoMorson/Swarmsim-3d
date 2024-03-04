@@ -19,9 +19,12 @@ const presets =  {
 
 
 export default (controls) => {
-		const v = param.presets.widget.value();
-		const ch = param.presets.choices;
+		const v = (param.presets.widget.value()+param.extra_presets.widget.value());
+		const ch = (param.presets.choices).concat(param.extra_presets.choices);
 		
+		console.log(typeof(v));
+		console.log(v);
+		console.log(ch);
 		const parset = presets[ch[v]];
 		param.synchronization_strength.widget.reset(controls,parset["K"]);
 		param.like_attracts_like_strength.widget.reset(controls,parset["J"]);

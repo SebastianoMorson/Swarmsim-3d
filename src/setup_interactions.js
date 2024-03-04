@@ -13,6 +13,7 @@ import param from "./parameters.js"
 import preset_parameters from "./presets.js"
 import resetparameters from "./reset_parameters.js"
 import {iterate,initialize,update} from "./simulation.js"
+import { checkIfNoButtonIsActive, toggleButton } from "./utils.js"
 
 
 var timer = {}
@@ -51,7 +52,12 @@ export default (display,controls,config) => {
 	//})
 
 
-	param.presets.widget.update(() => preset_parameters(controls))
+	param.presets.widget.update(() => {
+		toggleButton(ct.radios[1]);
+		preset_parameters(controls);
+	});
+
+	param.extra_presets.widget.update(()=> preset_parameters(controls));
 	
 	param.zoom.widget.update(()=>{
 		each(ct.zoom_slider, s =>{

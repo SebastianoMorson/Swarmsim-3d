@@ -56,6 +56,11 @@ export default (container_id,config)=>{
 		.attr("viewBox", "0 0 "+config.controls_size.width+" "+config.controls_size.height)
 
 
+	container.append("text").append("text")
+	.text("Original Brockmann's project can be found here: https://www.complexity-explorables.org/explorables/swarmalators/")
+	.attr("x", -20)
+	.attr("y", -10)
+
 	if (config.controls_border){
 		controls.append("rect").attr("class","border")
 		.attr("width",config.controls_size.width)

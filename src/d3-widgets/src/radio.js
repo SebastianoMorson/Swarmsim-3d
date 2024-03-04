@@ -4,7 +4,7 @@ import styles from './widgets.module.css'
 
 
 
-export default () => {
+export default (title) => {
 
 	const type = "radio";
 
@@ -19,7 +19,8 @@ export default () => {
 		fontsize = null,
 		update = function(x) {},		
 		choices = [],
-		value = 0;
+		value = 0,
+		title = title;
 		
 		const click = function(d,i) {
 					value=i;
@@ -52,7 +53,9 @@ export default () => {
 			choices: function(arg) { if ("undefined" === typeof arg) { return choices } else { choices = arg; return this }},
 			value: function(arg) { if ("undefined" === typeof arg) { return value } else { value = arg; return this }},
 			click:click,
-			reset:reset
+			reset:reset,
+			title:function(arg) { if ("undefined" === typeof arg) { return title } else { title = arg; return this }},
+
 		}
 };	
 

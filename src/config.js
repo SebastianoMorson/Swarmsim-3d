@@ -16,7 +16,7 @@ export default {
 		adv_slider_size: 200,
 		adv_slider_show: true,
 		adv_slider_gap : 1.25,
-		adv_slider_anchor: {x:1,y:13},
+		adv_slider_anchor: {x:1,y:12},
 
 		zoom_label:"zoom slider",
 		zoom_slider_size: 200, //lunghezza dello slider
@@ -59,19 +59,19 @@ export default {
 		probability_button_anchor:{x:11,y:9},
 		probability_button_size:30,
 		
-		radio_anchor:{x:8,y:9}, // 7 bottone dei preset
+		radio_anchor:{x:8,y:9.5}, // 7 bottone dei preset
 		radio_size:110, //per modificare la distanza tra i bottoni
 		radio_orientation:"vertical",
 		radio_label_position:"right",
 		radio_shape:"rect",
 
-		radio_anchor_extra:{x:8,y:13}, // 7 bottone dei preset
+		radio_anchor_extra:{x:8,y:14}, // 7 bottone dei preset
 		radio_size_extra:140, //per modificare la distanza tra i bottoni
 		radio_orientation_extra:"vertical",
 		radio_label_position_extra:"right",
 		radio_shape_extra:"rect",
 
-		radio_anchor_mem:{x:16, y:9},
+		radio_anchor_mem:{x:16, y:9.5},
 		radio_size_mem:90, //per modificare la distanza tra i bottoni
 		radio_orientation_mem:"vertical",
 		radio_label_position_mem: "right",

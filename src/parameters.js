@@ -55,6 +55,7 @@ export default {
 				"Splintered Phase Wave",
 				"Active Phase Wave",		
 			],
+			title:"DEFAULT PRESETS",
 			default: 0
 		},
 
@@ -67,6 +68,7 @@ export default {
 				"Schizo Wobble",
 				"Solar Convection",				
 			],
+			title:"EXTRA PRESETS",
 			default: 0
 		},
 
@@ -77,6 +79,7 @@ export default {
 				"True values",
 				"Gradual approach"
 			],
+			title:"MEMORY OPTIONS",
 			default:0
 		},
 	

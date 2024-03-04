@@ -53,12 +53,6 @@ const sliders = map(va,
 					.show(true)
 		);
 
-
-map(va,
-	v =>console.log(v.label)
-	);
-console.log("baubua");
-
 const adv_sliders = map(adv_va,
 	v => widgets.slider()
 			.id(v.id)
@@ -104,7 +98,7 @@ viz_switch[0].label(cfg.widgets.viz_label);
 // making the radio widgets objects, based on the choices
 		
 const radios = map(ch, 
-		v => widgets.radio()
+		v => widgets.radio(v.title)
 					.choices(v.choices)
 					.id(v.id)
 					.value(v.default)
