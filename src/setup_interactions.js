@@ -76,6 +76,9 @@ export default (display,controls,config) => {
 	
 	param.viz_switch.widget.update(()=>{
 		mode = param.viz_switch.widget.value();
+		each(ct.zoom_slider,s=>{
+			controls.select("#slider_"+s.id()).transition(1000).style("opacity",param.viz_switch.widget.value()?1:0)
+		})
 	});
 
 	
