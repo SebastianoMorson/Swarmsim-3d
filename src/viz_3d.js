@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
         scatter = [];
         yLine = [];
         xGrid = [];
-        svg = select("svg")
+        svg
         .call(
         drag()
             .on("drag", dragged)
