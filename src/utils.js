@@ -41,20 +41,6 @@ const dist_2d = (a,b) => {
 	return Math.sqrt(dx*dx + dy*dy);
 }
 
-function checkIfNoButtonIsActive(buttons){
-
-	var noActiveButton = true;
-	console.log(buttons[0].value());
-	// Controlla lo stato di ciascun bottone
-	buttons.forEach(function(button) {
-		console.log("bibibi",button);
-		if (button.value()) {
-			noActiveButton = false;
-		}
-	});
-	return noActiveButton;
-};
-
 var selected = "default"
 function reset_extra_presets(buttons) {
 	console.log(buttons[1].id());
@@ -70,4 +56,4 @@ function reset_presets(buttons) {
 	selected = "extra";
 }
 
-export {toArray,add_id_label,change_label, selected, add_widget,get_variables,get_booleans,get_choices,deg2rad,rad2deg,dist_3d, dist_2d, checkIfNoButtonIsActive, reset_extra_presets, reset_presets}
+export {toArray,add_id_label,change_label, selected, add_widget,get_variables,get_booleans,get_choices,deg2rad,rad2deg,dist_3d, dist_2d, reset_extra_presets, reset_presets}

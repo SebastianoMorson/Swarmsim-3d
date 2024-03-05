@@ -16,9 +16,9 @@ function iterate (display,config) {
 	if(change){
 		if(mode){
 			model_go_3d();
-			console.log("Miaoo",mode);
 			init_3d();
 		}else{
+			
 			model_go();
 			visual_go(display,config);
 		}
@@ -61,6 +61,7 @@ function update (display,config) {
 			model_update_3d();
 			init_3d();
 		}else{
+			destroy_3d();
 			model_update();
 			visual_update(display,config);
 		}

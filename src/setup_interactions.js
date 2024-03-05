@@ -13,7 +13,7 @@ import param from "./parameters.js"
 import preset_parameters from "./presets.js"
 import resetparameters from "./reset_parameters.js"
 import {iterate,initialize,update} from "./simulation.js"
-import { checkIfNoButtonIsActive, reset_extra_presets, reset_presets } from "./utils.js"
+import { reset_extra_presets, reset_presets } from "./utils.js"
 
 
 var timer = {}

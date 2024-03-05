@@ -166,6 +166,14 @@ document.addEventListener("DOMContentLoaded", () => {
         scatter = [];
         yLine = [];
         xGrid = [];
+        svg = select("svg")
+        .call(
+        drag()
+            .on("drag", dragged)
+            .on("start", dragStart)
+            .on("end", dragEnd)
+        )
+        .append("g");
 
         function findMaxByKey(array, key) {
             if (array.length === 0) return undefined;
@@ -243,8 +251,13 @@ document.addEventListener("DOMContentLoaded", () => {
   
     destroy_plot = function destroy_plot(){
         
-        var svg = select("svg");
-        svg.call(()=>{});
+        svg = select("svg");
+        svg.call(
+        drag()
+        .on("drag", ()=>{})
+        .on("start", ()=>{})
+        .on("end", ()=>{})
+        ).append("g");
         const points = svg.selectAll("circle");
         const xGrid = svg.selectAll("path.grid");
 
