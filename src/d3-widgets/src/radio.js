@@ -29,11 +29,18 @@ export default (title) => {
 					update();
 					}
 		
+		//const reset = function(svg,reset_value) {
+		//			value = reset_value;
+		//	 		svg.select("#radio_"+id).selectAll("."+styles.symbol)
+		//				.classed(styles.selected,v => v==value)
+		//			update();		
+		//}	
 		const reset = function(svg,reset_value) {
-					value = reset_value;
-			 		svg.select("#radio_"+id).selectAll("."+styles.symbol)
-						.classed(styles.selected,v => v==value)
-					update();		
+			value = reset_value;
+			console.log(select("#radio_extra_presets"))
+			select("#radio_extra_presets").selectAll("."+styles.symbol)
+			.classed(styles.selected, false)
+			update();		
 		}		
 				
 		return {

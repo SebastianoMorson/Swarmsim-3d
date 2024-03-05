@@ -3,6 +3,7 @@
 import * as d3 from "d3"
 import {map, replace, capitalize, each, has, isBoolean, pickBy, toPairs, pick } from "lodash-es"
 import styles from './d3-widgets/src/widgets.module.css'
+import {select} from "d3";
 
 const add_id_label = (x) => map(toPairs(x), d => {d[1]["id"]=d[0]; d[1]["label"]=replace(capitalize(d[0]),/_/g," ")} );
 
@@ -54,14 +55,19 @@ function checkIfNoButtonIsActive(buttons){
 	return noActiveButton;
 };
 
-function toggleButton(buttons) {
-	//buttons.reset();
-	each(buttons, button => {
-		// Cambia lo stato del bottone
-			
-		});
-
+var selected = "default"
+function reset_extra_presets(buttons) {
+	console.log(buttons[1].id());
+	select("#radio_extra_presets").selectAll("."+styles.symbol)
+			.classed(styles.selected, false)
+	selected = "default";
 }
 
+function reset_presets(buttons) {
+	console.log(buttons[1].id());
+	select("#radio_presets").selectAll("."+styles.symbol)
+			.classed(styles.selected, false)
+	selected = "extra";
+}
 
-export {toArray,add_id_label,change_label, add_widget,get_variables,get_booleans,get_choices,deg2rad,rad2deg,dist_3d, dist_2d, checkIfNoButtonIsActive, toggleButton}
+export {toArray,add_id_label,change_label, selected, add_widget,get_variables,get_booleans,get_choices,deg2rad,rad2deg,dist_3d, dist_2d, checkIfNoButtonIsActive, reset_extra_presets, reset_presets}

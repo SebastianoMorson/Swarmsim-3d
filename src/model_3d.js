@@ -193,7 +193,7 @@ function generaNumeriCasuali(p) {
     var randomNum = Math.random();
 
     // Controlla se il numero casuale generato è inferiore a 0.9 (90%)
-    if (randomNum < p) {
+    if (randomNum <= p) {
         // Se è inferiore a 0.9, restituisci 0
         return 0;
     } else {
@@ -219,7 +219,7 @@ const go  = () => {
 	const sigma = param.wiggle.widget.value();
 	var share_info = false;
 
-	
+	console.log("probabilità: ", P);	
 	let prob = generaNumeriCasuali(P); //generateRandomArray(prob, P);
 	
 	each(agents,n=>{
@@ -251,7 +251,8 @@ const go  = () => {
 
 		share_info = generaNumeriCasuali(P)==0 ;
 	
-		if(((new Date() - n.last_update)/1000 >= T) || (share_info)){	
+		if(((new Date() - n.last_update)/1000 >= T) && (share_info)){	
+			console.log("memoria cambiata");
 			each (agents, m=>{
 				m.memory[n.index].x = n.x;
 				m.memory[n.index].y = n.y;

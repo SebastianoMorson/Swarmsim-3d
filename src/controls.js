@@ -105,7 +105,7 @@ const radios = map(ch,
 					.orientation(cfg.widgets.radio_orientation)
 					.labelposition(cfg.widgets.radio_label_position)
 		);
-
+console.log(radios);
 
 // you can remove some of these, if the explorable doesn't have a subset of parameters,
 // e.g. if the explorable doesn't need toggles, you can remove all the toggle stuff

@@ -69,7 +69,7 @@ export default {
 				"Solar Convection",				
 			],
 			title:"EXTRA PRESETS",
-			default: 0
+			default: null
 		},
 
 		memory_initialization : {

@@ -19,7 +19,6 @@ export default (d,i) => {
 	select(element).append("text").attr("class",styles.label)
 	.text(title).attr("x", -10)
 	.attr("y", -20)
-	//.attr("alignment-baseline",tp.valign)
 	
 	const base = select(element)
 		.attr("class",styles.widget+" "+styles.radio).attr("id", id)
@@ -64,7 +63,6 @@ export default (d,i) => {
 	front.attr("class",styles.symbol)
 	front.filter(v=>v==d.value()).classed(styles.selected,true)
 	button.on("click",d.click)
-	
 	
 	const tp = textPosition(d.buttonsize(),d.buttonsize(),lbpos)
 	

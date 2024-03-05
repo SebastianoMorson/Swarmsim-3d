@@ -16,13 +16,13 @@ export default {
 		adv_slider_size: 200,
 		adv_slider_show: true,
 		adv_slider_gap : 1.25,
-		adv_slider_anchor: {x:1,y:12},
+		adv_slider_anchor: {x:1,y:11},
 
 		zoom_label:"zoom slider",
 		zoom_slider_size: 200, //lunghezza dello slider
 		zoom_slider_show: true,
 		zoom_slider_gap : 1.5, //distanza tra uno slider e l'altro
-		zoom_slider_anchor: {x:40,y:750},
+		zoom_slider_anchor: {x:40,y:780},
 		zoom_slider_girth: 8, //altezza dello slider (del rettangolo che rappresenta lo slider)
 		zoom_slider_knob:10, //raggio della pallina dello slider
 
