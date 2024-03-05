@@ -216,7 +216,7 @@ const go  = () => {
 		n.y+=n.dy+ddt*sigma*(Math.random()-0.5);
 		n.theta+=n.dtheta;
 		
-		share_info = generaNumeriCasuali(prob)==0 ;
+		share_info = generaNumeriCasuali(P)==0 ;
 		//console.log(share_info);
 		if(((new Date() - n.last_update)/1000 >= T) && (share_info)){	
 			each (agents, m=>{
