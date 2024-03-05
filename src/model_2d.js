@@ -20,7 +20,6 @@ var agents_shared = [];
 var mem_not_initialized = [];
 var old_time = new Date();
 var current_time = 0;
-var prob = new Array(100).fill(0);
 
 
 
