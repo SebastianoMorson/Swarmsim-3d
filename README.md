@@ -6,6 +6,8 @@
 
 [![CC BY 4.0][cc-by-shield]][cc-by]
 
+![](./3d.gif)
+
 This explorable illustrates is an evolution of the explorable of Professor Dirk Brockmann (https://github.com/dirkbrockmann/swarmalators) and shows in a 3D manner collective behavior of phase coupled oscillators that synchronize and swarm at the same time. Both the rules of collective motion and synchronization are entangled in this model and yield beautiful, magical patterns.
 
 The explorable is part of the [**Complexity Exporables Collection**](https://www.complexity-explorables.org). For more information about the system and its behavior consult the explorable
@@ -50,6 +52,7 @@ Go to the directory, install, build and show using `npm`:
 2. `npm install`
 3. `npm run build`
 4. `npm run show`
+
 
 ## License
 
