@@ -156,38 +156,19 @@ const initialize = () => {
 	each(agents_shared,d=>{ d.vx-=mvx_shared; d.vy-=mvy_shared;})
 };
 
-function shuffleArray(array) {
-	for (var i = array.length - 1; i > 0; i--) {
-	  // Genera un indice casuale compreso tra 0 e i
-	  var randomIndex = Math.floor(Math.random() * (i + 1));
-  
-	  // Scambia gli elementi con l'indice casuale
-	  var temp = array[i];
-	  array[i] = array[randomIndex];
-	  array[randomIndex] = temp;
-	}
-  }
+function generaNumeriCasuali(p) {
+    // Genera un numero casuale tra 0 e 1
+    var randomNum = Math.random();
 
-function getRandomElement(array) {
-	// Genera un indice casuale compreso tra 0 e la lunghezza dell'array - 1
-	var randomIndex = Math.floor(Math.random() * 99);
-  
-	// Restituisci l'elemento corrispondente all'indice casuale
-	return array[randomIndex];
+    // Controlla se il numero casuale generato è inferiore a 0.9 (90%)
+    if (randomNum <= p) {
+        // Se è inferiore a 0.9, restituisci 0
+        return 0;
+    } else {
+        // Altrimenti, restituisci 1
+        return 1;
+    }
 }
-
-
-function generateRandomArray(prob, P){
-	prob.fill(0);
-	// Imposta a 1 i valori per gli ultimi 70 elementi del vettore
-	for (var i = Math.floor(P*100); i < 100; i++) {
-	prob[i] = 1;
-	}
-	shuffleArray(prob);
-	return prob
-}
-
-
 
 // the go function, this is bundled in simulation.js with the go function of
 // the visualization, typically this is the iteration function of the model that
@@ -208,7 +189,7 @@ const go  = () => {
 
 	
 	//console.log(P);
-	prob = generateRandomArray(prob, P);
+	
 	//console.log(prob);
 
 	each(agents,n=>{
@@ -236,9 +217,9 @@ const go  = () => {
 		n.y+=n.dy+ddt*sigma*(Math.random()-0.5);
 		n.theta+=n.dtheta;
 		
-		share_info = getRandomElement(prob)==0 ;
+		share_info = generaNumeriCasuali(prob)==0 ;
 		//console.log(share_info);
-		if(((new Date() - n.last_update)/1000 >= T) || (share_info)){	
+		if(((new Date() - n.last_update)/1000 >= T) && (share_info)){	
 			each (agents, m=>{
 				m.memory[n.index].x = n.x;
 				m.memory[n.index].y = n.y;

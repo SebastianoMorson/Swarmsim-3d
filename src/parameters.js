@@ -77,7 +77,7 @@ export default {
 				"All zero",
 				"Sthocastic values",
 				"True values",
-				"Gradual approach"
+				//"Gradual approach"
 			],
 			title:"MEMORY OPTIONS",
 			default:0

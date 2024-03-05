@@ -72,7 +72,7 @@ export default {
 		radio_shape_extra:"rect",
 
 		radio_anchor_mem:{x:16, y:9.5},
-		radio_size_mem:90, //per modificare la distanza tra i bottoni
+		radio_size_mem:55, //per modificare la distanza tra i bottoni
 		radio_orientation_mem:"vertical",
 		radio_label_position_mem: "right",
 		radio_shape_mem:"rect",
