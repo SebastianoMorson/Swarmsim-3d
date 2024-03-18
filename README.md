@@ -42,7 +42,7 @@ An example is provided in the file example.svg
 Clone repository:
 
 ```shell
-git clone https://github.com/justACuriousIgnorant/Swarmsim-3d
+git clone https://github.com/SebastianoMorson/Swarmsim-3d
 ```
 
 
