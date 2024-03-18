@@ -75,7 +75,7 @@ export default {
 		memory_initialization : {
 			choices:[
 				"All zero",
-				"Sthocastic values",
+				"Stochastic values",
 				"True values",
 				//"Gradual approach"
 			],
