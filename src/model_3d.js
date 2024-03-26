@@ -33,103 +33,22 @@ const initialize = () => {
 	// set/reset timer
 	param.timer={}; param.tick=0;
 	
-	mem_not_initialized = range(param.N).map(i => {
-		let theta = 2*Math.PI*Math.random();
-		let phi = 2*Math.PI*Math.random();
-		  return {
-			index: i,
-			x: 2*param.L*(Math.random()-0.5),
-			y: 2*param.L*(Math.random()-0.5),  
-			z: 2*param.L*(Math.random()-0.5),  
-			/*
-			vx : Math.cos(theta),
-			vy : Math.sin(theta),  
-			vz : Math.tan(theta), //da cambiare
-			*/
-			vx : Math.cos(theta)*Math.sin(phi),
-			vy : Math.sin(theta)*Math.sin(phi),  
-			vz : Math.cos(phi),
-
-			dx : 0,
-			dy : 0,
-			dz : 0,
-			omega:param.omega,
-			domega:rd(),
-			theta: Math.random()*2*Math.PI,
-			phi:2*Math.PI*Math.random(),
-			dtheta : 0,
-			last_update: new Date()
-		  };
-	});	
-
-
-	agents = range(param.N).map(i => {
-		let theta = 2*Math.PI*Math.random();
-		let phi = 2*Math.PI*Math.random();
-
-		  return {
-		    index: i,
-			x: 2*param.L*(Math.random()-0.5),
-			y: 2*param.L*(Math.random()-0.5),  
-			z: 2*param.L*(Math.random()-0.5),  
-
-			vx : Math.cos(theta)*Math.sin(phi),
-			vy : Math.sin(theta)*Math.sin(phi),  
-			vz : Math.cos(phi),
-			dx : 0,
-			dy : 0,
-			dz : 0,
-			omega:param.omega,
-			domega:rd(),
-			theta: Math.random()*2*Math.PI,
-			dtheta : 0,
-			memory: Array.from(mem_not_initialized),
-			last_update: new Date()
-		  };
-	});
 	//initialize the memory
-	
 	var choice = param.memory_initialization.widget.value();
 
 	switch (choice){
 		
 		case 0: //zero values
-			each (agents, n => {
-			n.memory = range(param.N).map(i => {
-			let theta = 2*Math.PI*Math.random();
-			let phi = 2*Math.PI*Math.random();
-			  return {
-				index: i,
-				x: 0*param.L*(Math.random()-0.5), //prima c'era 0*2*param.L*(Math.random()-0.5)
-				y: 0*param.L*(Math.random()-0.5),  
-				z: 0*param.L*(Math.random()-0.5),  
-
-				vx : Math.cos(theta)*Math.sin(phi),
-				vy : Math.sin(theta)*Math.sin(phi),  
-				vz : Math.cos(phi),
-				dx : 0,
-				dy : 0,
-				dz : 0,
-				omega:param.omega,
-				domega:rd(),
-				theta: Math.random()*2*Math.PI,
-				dtheta : 0,
-				last_update: new Date()
-			  };
-			})});
-			break;
-			
-		case 1: //stochastic value
-			each (agents, n => {
-				n.memory = range(param.N).map(i => {
+			agents = range(param.N).map(i => {
 				let theta = 2*Math.PI*Math.random();
 				let phi = 2*Math.PI*Math.random();
-				  return {
+		
+				return {
 					index: i,
 					x: 2*param.L*(Math.random()-0.5),
 					y: 2*param.L*(Math.random()-0.5),  
 					z: 2*param.L*(Math.random()-0.5),  
-
+		
 					vx : Math.cos(theta)*Math.sin(phi),
 					vy : Math.sin(theta)*Math.sin(phi),  
 					vz : Math.cos(phi),
@@ -140,9 +59,97 @@ const initialize = () => {
 					domega:rd(),
 					theta: Math.random()*2*Math.PI,
 					dtheta : 0,
+					
 					last_update: new Date()
-				  };
-			})});
+				};
+			});
+			var mem = range(param.N).map(i => {
+				let theta = 2*Math.PI*Math.random();
+				let phi = 2*Math.PI*Math.random();
+		
+				return {
+					index: i,
+					x: 0*param.L*(Math.random()-0.5),
+					y: 0*param.L*(Math.random()-0.5),  
+					z: 0*param.L*(Math.random()-0.5),  
+		
+					vx : Math.cos(theta)*Math.sin(phi),
+					vy : Math.sin(theta)*Math.sin(phi),  
+					vz : Math.cos(phi),
+					dx : 0,
+					dy : 0,
+					dz : 0,
+					omega:param.omega,
+					domega:rd(),
+					theta: Math.random()*2*Math.PI,
+					dtheta : 0,
+					
+					last_update: new Date()
+				};
+			});
+
+			mem = JSON.parse(JSON.stringify(mem));
+			
+			each(agents, a=>{
+				a['memory'] = mem;
+			});
+			break;
+			
+		case 1: //stochastic value
+			agents = range(param.N).map(i => {
+				let theta = 2*Math.PI*Math.random();
+				let phi = 2*Math.PI*Math.random();
+		
+				return {
+					index: i,
+					x: 2*param.L*(Math.random()-0.5),
+					y: 2*param.L*(Math.random()-0.5),  
+					z: 2*param.L*(Math.random()-0.5),  
+		
+					vx : Math.cos(theta)*Math.sin(phi),
+					vy : Math.sin(theta)*Math.sin(phi),  
+					vz : Math.cos(phi),
+					dx : 0,
+					dy : 0,
+					dz : 0,
+					omega:param.omega,
+					domega:rd(),
+					theta: Math.random()*2*Math.PI,
+					dtheta : 0,
+					
+					last_update: new Date()
+				};
+			});
+			var mem = range(param.N).map(i => {
+				let theta = 2*Math.PI*Math.random();
+				let phi = 2*Math.PI*Math.random();
+		
+				return {
+					index: i,
+					x: 2*param.L*(Math.random()-0.5),
+					y: 2*param.L*(Math.random()-0.5),  
+					z: 2*param.L*(Math.random()-0.5),  
+		
+					vx : Math.cos(theta)*Math.sin(phi),
+					vy : Math.sin(theta)*Math.sin(phi),  
+					vz : Math.cos(phi),
+					dx : 0,
+					dy : 0,
+					dz : 0,
+					omega:param.omega,
+					domega:rd(),
+					theta: Math.random()*2*Math.PI,
+					dtheta : 0,
+					
+					last_update: new Date()
+				};
+			});
+
+			mem = JSON.parse(JSON.stringify(mem));
+			
+			each(agents, a=>{
+				a['memory'] = mem;
+			});
 			break;	
 		case 2: //true values
 			agents = range(param.N).map(i => {
@@ -247,7 +254,7 @@ const go  = () => {
 	const P = param.coupling_probability.widget.value();
 	const sigma = param.wiggle.widget.value();
 	var share_info = false;
-
+	console.log(K);
 	let prob = generaNumeriCasuali(P); //generateRandomArray(prob, P);
 	
 	each(agents,n=>{
@@ -279,19 +286,27 @@ const go  = () => {
 
 		share_info = generaNumeriCasuali(P)==0 ;
 	
-		if(((new Date() - n.last_update)/1000 >= T) && (share_info)){	
+		if(((new Date() - n.last_update)/1000 >= T)){	
 			
 			each (agents, m=>{
+				if(share_info){
 				m.memory[n.index].x = n.x;
 				m.memory[n.index].y = n.y;
 				m.memory[n.index].z = n.z;
 				m.memory[n.index].theta = n.theta;
 				//m.memory[n.index].phi = n.phi;
 				m.memory[n.index].last_update = new Date();
-				})
+				}	
+			})
+			
 		
+		
+		
+		}
 		n.last_update = new Date();
-	}})
+		//console.log("N: ", n.last_update);
+		//console.log("M: ", n.memory[2].last_update);
+	})
 
 }
 
