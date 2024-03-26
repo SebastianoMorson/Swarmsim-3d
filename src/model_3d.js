@@ -284,11 +284,11 @@ const go  = () => {
 		n.theta+=n.dtheta;//to change
 		//n.phi+=n.dphi;//to change
 
-		share_info = generaNumeriCasuali(P)==0 ;
 	
 		if(((new Date() - n.last_update)/1000 >= T)){	
 			
 			each (agents, m=>{
+				share_info = generaNumeriCasuali(P)==0 ;
 				if(share_info){
 				m.memory[n.index].x = n.x;
 				m.memory[n.index].y = n.y;

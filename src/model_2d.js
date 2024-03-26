@@ -256,10 +256,10 @@ const go  = () => {
 		n.y+=n.dy+ddt*sigma*(Math.random()-0.5);
 		n.theta+=n.dtheta;
 		
-		share_info = generaNumeriCasuali(P)==0 ;
 		//console.log(share_info);
 		if(((new Date() - n.last_update)/1000 >= T)){	
 			each (agents, m=>{
+				share_info = generaNumeriCasuali(P)==0 ;
 				if(share_info){
 				m.memory[n.index].x = n.x;
 				m.memory[n.index].y = n.y;
