@@ -17,7 +17,8 @@ const ddt = Math.sqrt(dt);
 
 var agents = [];
 var agents_shared = [];
-var mem_not_initialized = [];
+var mem_not_initialized = {};
+var mem = {};
 var old_time = new Date();
 var current_time = 0;
 
@@ -35,18 +36,17 @@ const initialize = () => {
 	param.timer={}; param.tick=0;
 	
 	mem_not_initialized = range(param.N).map(i => {
-		let theta = 2*Math.PI*Math.random();
 		  return {
 			index: i,
-			x: 2*param.L*(Math.random()-0.5),
-			y: 2*param.L*(Math.random()-0.5),  
-			vx : Math.cos(theta),
-			vy : Math.sin(theta),  
+			x: 0,
+			y: 0,  
+			vx : 0,
+			vy : 0,  
 			dx : 0,
 			dy : 0,
 			omega:param.omega,
-			domega:rd(),
-			theta: Math.random()*2*Math.PI,
+			domega:0,
+			theta: 0,
 			dtheta : 0,
 			last_update: new Date()
 		  };
@@ -67,7 +67,7 @@ const initialize = () => {
 			domega:rd(),
 			theta: Math.random()*2*Math.PI,
 			dtheta : 0,
-			memory: Array.from(mem_not_initialized),
+			memory: {},//Array.from(mem_not_initialized),
 			last_update: new Date()
 		  };
 	});
@@ -96,6 +96,7 @@ const initialize = () => {
 				last_update: new Date()
 			  };
 			})});
+			
 			break;
 			
 		case 1: //stochastic value
@@ -119,11 +120,47 @@ const initialize = () => {
 			})});
 			break;	
 		case 2: //true values
+			/*
+			let objCopy = Object.assign({}, agents);
+			delete objCopy.memory;
+			console.log("ciao::: ", objCopy);
+			//let newObj = JSON.parse(JSON.stringify(objCopy));
+			//console.log(newObj);
 			each (agents, n => {
-				n.memory = agents;
-			});	
+				n.memory = objCopy;
+				*/
+				
+				agents = range(param.N).map(i => {
+					let theta = 2*Math.PI*Math.random();
+					return  {
+						index: i,
+						x: 2*param.L*(Math.random()-0.5),
+						y: 2*param.L*(Math.random()-0.5),  
+						vx : Math.cos(theta),
+						vy : Math.sin(theta),  
+						dx : 0,
+						dy : 0,
+						omega:param.omega,
+						domega:rd(),
+						theta: Math.random()*2*Math.PI,
+						dtheta : 0,
+						last_update: new Date()
+					  };
+					
+					
+				});
+				let agents_copy = JSON.parse(JSON.stringify(agents));
+				
+				each(agents, a=>{
+					a['memory'] = agents_copy;
+				});
+				
+		
+				
+				
+			
 			break;
-		case 3: //Gradual approach is like zero values for the moment
+		/*case 3: //Gradual approach is like zero values for the moment
 			each (agents, n => {
 			agents.memory = range(param.N).map(i => {
 				let theta = 2*Math.PI*Math.random();
@@ -142,7 +179,9 @@ const initialize = () => {
 					last_update: new Date()
 				  };
 			})});	
+			console.log(agents[1].memory);
 			break;
+		*/
 	}
 	
 	//console.log("ciao: ",agents);
@@ -185,20 +224,14 @@ const go  = () => {
 	const P = param.coupling_probability.widget.value();
 	const sigma = param.wiggle.widget.value();
 	var share_info = false;
-
-	
-	//console.log(P);
-	
-	//console.log(prob);
-
+	console.log(K);
 	each(agents,n=>{
-		//console.log(share_info);
 		
 		n.dtheta = n.omega*phasemod+varomega*n.domega;
 		each(n.memory,m=>{
-			//console.log(share_info);
-			//console.log(K);
+
 			if (n.index!=m.index){
+				//console.log(n," ciao ", m);
 				let d = dist_2d(n,m);
 				let kernel = (1+J*Math.cos(m.theta-n.theta)/d - 1.0/(d*d))/param.N;
 				n.dx += (m.x-n.x)*kernel;
@@ -226,9 +259,9 @@ const go  = () => {
 				m.memory[n.index].last_update = new Date();
 				})
 		
-		n.last_update = new Date();
+			n.last_update = new Date();
 	}})
-
+	
 	
 
 	//}
@@ -259,7 +292,7 @@ const update = () => {
 		})
 	})
 
-	console.log("Update");
+	
 
 }
 

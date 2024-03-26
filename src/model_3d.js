@@ -100,9 +100,9 @@ const initialize = () => {
 			let phi = 2*Math.PI*Math.random();
 			  return {
 				index: i,
-				x: 2*param.L*(Math.random()-0.5), //prima c'era 0*2*param.L*(Math.random()-0.5)
-				y: 2*param.L*(Math.random()-0.5),  
-				z: 2*param.L*(Math.random()-0.5),  
+				x: 0*param.L*(Math.random()-0.5), //prima c'era 0*2*param.L*(Math.random()-0.5)
+				y: 0*param.L*(Math.random()-0.5),  
+				z: 0*param.L*(Math.random()-0.5),  
 
 				vx : Math.cos(theta)*Math.sin(phi),
 				vy : Math.sin(theta)*Math.sin(phi),  
@@ -145,9 +145,38 @@ const initialize = () => {
 			})});
 			break;	
 		case 2: //true values
-			each (agents, n => {
-				n.memory = agents;
-			});	
+			agents = range(param.N).map(i => {
+				let theta = 2*Math.PI*Math.random();
+				let phi = 2*Math.PI*Math.random();
+		
+				return {
+					index: i,
+					x: 2*param.L*(Math.random()-0.5),
+					y: 2*param.L*(Math.random()-0.5),  
+					z: 2*param.L*(Math.random()-0.5),  
+		
+					vx : Math.cos(theta)*Math.sin(phi),
+					vy : Math.sin(theta)*Math.sin(phi),  
+					vz : Math.cos(phi),
+					dx : 0,
+					dy : 0,
+					dz : 0,
+					omega:param.omega,
+					domega:rd(),
+					theta: Math.random()*2*Math.PI,
+					dtheta : 0,
+					
+					last_update: new Date()
+				};
+			});
+
+
+			let agents_copy = JSON.parse(JSON.stringify(agents));
+			
+			each(agents, a=>{
+				a['memory'] = agents_copy;
+			});
+		
 			break;
 		case 3: //Gradual approach is like zero values for the moment
 			each (agents, n => {
@@ -219,7 +248,6 @@ const go  = () => {
 	const sigma = param.wiggle.widget.value();
 	var share_info = false;
 
-	console.log("probabilità: ", P);	
 	let prob = generaNumeriCasuali(P); //generateRandomArray(prob, P);
 	
 	each(agents,n=>{
@@ -252,7 +280,7 @@ const go  = () => {
 		share_info = generaNumeriCasuali(P)==0 ;
 	
 		if(((new Date() - n.last_update)/1000 >= T) && (share_info)){	
-			console.log("memoria cambiata");
+			
 			each (agents, m=>{
 				m.memory[n.index].x = n.x;
 				m.memory[n.index].y = n.y;
