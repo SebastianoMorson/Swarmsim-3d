@@ -62,6 +62,7 @@ function update (display,config) {
 			init_3d();
 		}else{
 			destroy_3d();
+			initialize(display, config);
 			model_update();
 			visual_update(display,config);
 		}
@@ -74,7 +75,7 @@ function update (display,config) {
 			
 		}else{
 			destroy_3d();
-			//initialize(display, config)
+			initialize(display, config);
 			model_update();
 			visual_update(display,config);
 		}
