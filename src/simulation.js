@@ -43,14 +43,11 @@ function initialize (display,config) {
 	destroy_3d();
 	
 	if(mode){
-		console.log("mode 3d");
-		console.log("model 3d initialize ...");
+		
 		model_init_3d();
 		init_3d();
-		console.log("...model initialization finished");
 	}else{
 		destroy_3d();
-		console.log("mode 2d");
 		model_init();
 		visual_init(display,config); 
 	}

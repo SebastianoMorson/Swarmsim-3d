@@ -81,8 +81,6 @@ export default (display,controls,config) => {
 		})
 	});
 	
-
-	
 }
 export {mode}
 

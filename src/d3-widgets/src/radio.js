@@ -37,7 +37,6 @@ export default (title) => {
 		//}	
 		const reset = function(svg,reset_value) {
 			value = reset_value;
-			console.log(select("#radio_extra_presets"))
 			select("#radio_extra_presets").selectAll("."+styles.symbol)
 			.classed(styles.selected, false)
 			update();		

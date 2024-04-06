@@ -43,14 +43,12 @@ const dist_2d = (a,b) => {
 
 var selected = "default"
 function reset_extra_presets(buttons) {
-	console.log(buttons[1].id());
 	select("#radio_extra_presets").selectAll("."+styles.symbol)
 			.classed(styles.selected, false)
 	selected = "default";
 }
 
 function reset_presets(buttons) {
-	console.log(buttons[1].id());
 	select("#radio_presets").selectAll("."+styles.symbol)
 			.classed(styles.selected, false)
 	selected = "extra";

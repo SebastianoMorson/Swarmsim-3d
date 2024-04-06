@@ -254,7 +254,7 @@ const go  = () => {
 	const P = param.coupling_probability.widget.value();
 	const sigma = param.wiggle.widget.value();
 	var share_info = false;
-	console.log(K);
+	
 	let prob = generaNumeriCasuali(P); //generateRandomArray(prob, P);
 	
 	each(agents,n=>{
@@ -292,7 +292,6 @@ const go  = () => {
 				m.memory[n.index].y = n.y;
 				m.memory[n.index].z = n.z;
 				m.memory[n.index].theta = n.theta;
-				//m.memory[n.index].phi = n.phi;
 				m.memory[n.index].last_update = new Date();
 				}	
 			})
@@ -303,8 +302,6 @@ const go  = () => {
 
 			shareInfo();
 		}
-//console.log("N: ", n.last_update);
-		//console.log("M: ", n.memory[2].last_update);
 	})
 
 }

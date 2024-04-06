@@ -35,14 +35,11 @@ const zoom_slid = [all_va[2]];
 const adv_va = takeRight(all_va,4);
 
 var bo = toArray(booleans,2);
-console.log("All_val: ", bo);
 
 const viz_bo = [bo[0]];
 const freeze_bo = [bo[1]];
 bo = [bo[2]]; //takeRight(bo, 1);
-console.log("viz_bo: ", viz_bo);
-console.log("freeze_bo: ", freeze_bo);
-console.log("bo: ", bo);
+
 
 const ch = toArray(choices);
 
@@ -85,15 +82,6 @@ const zoom_slider = map(zoom_slid,
 		);
 
 // making the toggle widgets objects, based on the switches
-		
-//const toggles = map(bo, 
-//		v => widgets.toggle()
-//					.id(v.id)
-//					.label(v.label)
-//					.value(v.default)					
-//		);
-//console.log("toggle: ", toggles);
-//toggles[0].label(cfg.widgets.adv_label) //adv_button
 
 const viz_switch = map(viz_bo, 
 	v => widgets.toggle()

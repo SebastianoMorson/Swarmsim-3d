@@ -23,8 +23,6 @@ var agents_shared = [];
 
 const initialize = () => {
 	
-	console.log("Initialized");
-
 	// set/reset timer
 	param.timer={}; param.tick=0;
 
@@ -127,16 +125,7 @@ const initialize = () => {
 			
 			break;	
 		case 2: //true values
-			/*
-			let objCopy = Object.assign({}, agents);
-			delete objCopy.memory;
-			console.log("ciao::: ", objCopy);
-			//let newObj = JSON.parse(JSON.stringify(objCopy));
-			//console.log(newObj);
-			each (agents, n => {
-				n.memory = objCopy;
-				*/
-				
+			
 			agents = range(param.N).map(i => {
 				let theta = 2*Math.PI*Math.random();
 				return  {
@@ -167,31 +156,9 @@ const initialize = () => {
 				
 			
 			break;
-		/*case 3: //Gradual approach is like zero values for the moment
-			each (agents, n => {
-			agents.memory = range(param.N).map(i => {
-				let theta = 2*Math.PI*Math.random();
-				  return {
-					index: i,
-					x: 0*2*param.L*(Math.random()-0.5),
-					y: 0*2*param.L*(Math.random()-0.5),  
-					vx : Math.cos(theta),
-					vy : Math.sin(theta),  
-					dx : 0,
-					dy : 0,
-					omega:param.omega,
-					domega:rd(),
-					theta: Math.random()*2*Math.PI,
-					dtheta : 0,
-					last_update: new Date()
-				  };
-			})});	
-			console.log(agents[1].memory);
-			break;
-		*/
+		
 	}
 	
-	//console.log("ciao: ",agents);
 	const mvx = meanBy(agents,d=>d.vx)
 	const mvy = meanBy(agents,d=>d.vy)
 	const mvx_shared = meanBy(agents_shared,d=>d.vx)
@@ -231,19 +198,13 @@ const go  = () => {
 	const P = param.coupling_probability.widget.value();
 	const sigma = param.wiggle.widget.value();
 	var share_info = false;
-	//console.log("P:",P);
-	//console.log("K:",K);
-	//console.log("J:",J);
-	//console.log("sigma:",sigma);
-	//console.log("varomega:",varomega);
-	//console.log("T:",T);
+	
 	each(agents,n=>{
 		
 		n.dtheta = n.omega*phasemod+varomega*n.domega;
 		each(n.memory,m=>{
 
 			if (n.index!=m.index){
-				//console.log(n," ciao ", m);
 				let d = dist_2d(n,m);
 				let kernel = (1+J*Math.cos(m.theta-n.theta)/d - 1.0/(d*d))/param.N;
 				n.dx += (m.x-n.x)*kernel;
@@ -260,8 +221,6 @@ const go  = () => {
 		n.x+=n.dx+ddt*sigma*(Math.random()-0.5);
 		n.y+=n.dy+ddt*sigma*(Math.random()-0.5);
 		n.theta+=n.dtheta;
-		//console.log(share_info);
-		var lastTime = new Date();
 		
 		function shareInfo() {
 			
@@ -276,25 +235,14 @@ const go  = () => {
 			})
 			n.last_update = new Date();
 		}
-		
-		// Imposta un ritardo di un secondo
-		
+				
 		if((new Date() - n.last_update)>=T*1000){	
-			//console.log("ciao, ",(new Date()).getSeconds());
-			
-			//setTimeout(shareInfo, T*1000);
+
 			shareInfo();
 		}
 		
 })
 	
-	
-
-	//}
-	
-	
-//	console.log(maxBy(agents,a=>a.theta).theta)
-//	console.log(minBy(agents,a=>a.theta).theta)	
 
 }
 
