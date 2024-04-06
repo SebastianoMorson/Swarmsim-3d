@@ -251,7 +251,9 @@ export default (controls,grid)=>{
 	
 	preset_parameters(controls)
 	
-	
+	each(zoom_slider,s=>{
+		controls.select("#slider_"+s.id()).style("opacity",parameters.viz_switch.widget.value()?1:0)
+	})
 }
 
 // here are all the exported objects, all the parameters, their associated widgets and the action buttons

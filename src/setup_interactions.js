@@ -42,15 +42,6 @@ export default (display,controls,config) => {
 	ct.reset_like.update(()=>{
 		param.like_attracts_like_strength.widget.reset(controls,0)
 	})
-	
-	//ct.reset_time.update(()=>{
-	//	param.interaction_period.widget.reset(controls,0.5)
-	//})
-
-	//ct.reset_probability.update(()=>{
-	//	param.coupling_probability.widget.reset(controls,1)
-	//})
-
 
 	param.presets.widget.update(() => {
 		reset_extra_presets(ct.radios);
@@ -61,19 +52,12 @@ export default (display,controls,config) => {
 		preset_parameters(controls);
 	});
 
-	//param.extra_presets.widget.update(()=> preset_parameters(controls));
-	
 	param.zoom.widget.update(()=>{
 		each(ct.zoom_slider, s =>{
 			controls.select("#slider_"+s.id()).transition(0);
 		})
 	})
-	//param.advanced_settings.widget.update(()=>{
-	//	each(ct.adv_sliders,s=>{
-	//		controls.select("#slider_"+s.id()).transition(1000).style("opacity",param.advanced_settings.widget.value()?1:0)
-	//	})
-	//})
-	
+
 	param.viz_switch.widget.update(()=>{
 		mode = param.viz_switch.widget.value();
 		each(ct.zoom_slider,s=>{
