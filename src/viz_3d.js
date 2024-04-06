@@ -266,13 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         points.remove();
         xGrid.remove();
-        console.log("distruzioneee");
     }
-   
-
-
-    init();
-
 
 });
 

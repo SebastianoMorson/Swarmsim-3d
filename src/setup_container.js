@@ -47,6 +47,8 @@ export default (container_id,config)=>{
 		.style("width","100%")
 	//*/
 
+	
+
 	const controls = container.append("div")
 		.attr("id","controls")
 		.attr("class","control-panel")
@@ -54,12 +56,22 @@ export default (container_id,config)=>{
 		.classed(config.debug_lattice,config.debug)
 		.append("svg")
 		.attr("viewBox", "0 0 "+config.controls_size.width+" "+config.controls_size.height)
+		
+	const text = controls.append("text")
+	.text("ADVANCED CONTROLS")
+	.style("font-size", "16px")
+	
+	// Trasforma il testo per spostarlo
+	text.attr("transform", "translate(40, 410)");
 
-
-	container.append("text").append("text")
-	.text("Original Brockmann's project can be found here: https://www.complexity-explorables.org/explorables/swarmalators/")
+	container.append("text")
+	.text("This tool is based on the complexity explorable Swårmalätørs by Dirk Brockmann.“ and hyperlink the word Swårmalätørs to https://www.complexity-explorables.org/explorables/swarmalators/")
+	.style("font-size", "10px") // Modifica la dimensione del font
 	.attr("x", -20)
 	.attr("y", -10)
+	
+
+	
 
 	if (config.controls_border){
 		controls.append("rect").attr("class","border")

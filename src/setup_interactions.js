@@ -28,7 +28,7 @@ const startstop = (display,config) => {
 
 // this function is called by index.js to connect actions and update functions to the explorables.
 // once this is called, all widgets are usable in the controls panel
-var mode = true;
+var mode = false;
 export default (display,controls,config) => {
 	
 	ct.reset.update(()=>resetparameters(controls))	// one button gets the resetparameters() method defined in resetparameters.js
@@ -68,11 +68,11 @@ export default (display,controls,config) => {
 			controls.select("#slider_"+s.id()).transition(0);
 		})
 	})
-	param.advanced_settings.widget.update(()=>{
-		each(ct.adv_sliders,s=>{
-			controls.select("#slider_"+s.id()).transition(1000).style("opacity",param.advanced_settings.widget.value()?1:0)
-		})
-	})
+	//param.advanced_settings.widget.update(()=>{
+	//	each(ct.adv_sliders,s=>{
+	//		controls.select("#slider_"+s.id()).transition(1000).style("opacity",param.advanced_settings.widget.value()?1:0)
+	//	})
+	//})
 	
 	param.viz_switch.widget.update(()=>{
 		mode = param.viz_switch.widget.value();
@@ -80,6 +80,7 @@ export default (display,controls,config) => {
 			controls.select("#slider_"+s.id()).transition(1000).style("opacity",param.viz_switch.widget.value()?1:0)
 		})
 	});
+	
 
 	
 }

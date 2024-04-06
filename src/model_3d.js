@@ -284,9 +284,7 @@ const go  = () => {
 		n.theta+=n.dtheta;//to change
 		//n.phi+=n.dphi;//to change
 
-	
-		if(((new Date() - n.last_update)/1000 >= T)){	
-			
+		function shareInfo(){
 			each (agents, m=>{
 				share_info = generaNumeriCasuali(P)==0 ;
 				if(share_info){
@@ -298,13 +296,14 @@ const go  = () => {
 				m.memory[n.index].last_update = new Date();
 				}	
 			})
-			
-		
-		
+			n.last_update = new Date();
 		
 		}
-		n.last_update = new Date();
-		//console.log("N: ", n.last_update);
+		if((new Date() - n.last_update)>=T*1000){	
+
+			shareInfo();
+		}
+//console.log("N: ", n.last_update);
 		//console.log("M: ", n.memory[2].last_update);
 	})
 

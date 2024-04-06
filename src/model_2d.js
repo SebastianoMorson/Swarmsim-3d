@@ -231,7 +231,12 @@ const go  = () => {
 	const P = param.coupling_probability.widget.value();
 	const sigma = param.wiggle.widget.value();
 	var share_info = false;
-	console.log(P);
+	//console.log("P:",P);
+	//console.log("K:",K);
+	//console.log("J:",J);
+	//console.log("sigma:",sigma);
+	//console.log("varomega:",varomega);
+	//console.log("T:",T);
 	each(agents,n=>{
 		
 		n.dtheta = n.omega*phasemod+varomega*n.domega;
@@ -255,9 +260,11 @@ const go  = () => {
 		n.x+=n.dx+ddt*sigma*(Math.random()-0.5);
 		n.y+=n.dy+ddt*sigma*(Math.random()-0.5);
 		n.theta+=n.dtheta;
-		
 		//console.log(share_info);
-		if(((new Date() - n.last_update)/1000 >= T)){	
+		var lastTime = new Date();
+		
+		function shareInfo() {
+			
 			each (agents, m=>{
 				share_info = generaNumeriCasuali(P)==0 ;
 				if(share_info){
@@ -267,10 +274,18 @@ const go  = () => {
 				m.memory[n.index].last_update = new Date();
 				}
 			})
-		
-			
+			n.last_update = new Date();
 		}
-		n.last_update = new Date();
+		
+		// Imposta un ritardo di un secondo
+		
+		if((new Date() - n.last_update)>=T*1000){	
+			//console.log("ciao, ",(new Date()).getSeconds());
+			
+			//setTimeout(shareInfo, T*1000);
+			shareInfo();
+		}
+		
 })
 	
 	

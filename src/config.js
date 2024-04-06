@@ -14,9 +14,9 @@ export default {
 		
 		adv_label:"Adv. settings",
 		adv_slider_size: 200,
-		adv_slider_show: true,
+		adv_slider_show: false,
 		adv_slider_gap : 1.25,
-		adv_slider_anchor: {x:1,y:11},
+		adv_slider_anchor: {x:1,y:10},
 
 		zoom_label:"zoom slider",
 		zoom_slider_size: 200, //lunghezza dello slider
@@ -37,11 +37,21 @@ export default {
 		viz_label_pos:"bottom",
 		viz_size:12,
 
+		freeze_label:"Freeze phase",
+		freeze_anchor: {x:650, y:600},
+		freeze_label_pos:"bottom",
+		freeze_size:12,
+
 		playbutton_size: 100,
 		playbutton_anchor:{x:2.5,y:2},
 		
 		backbutton_anchor:{x:8.5,y:2},
+		backbutton_label:"setup",
+		backbutton_labelposition:"bottom",
 		resetbutton_anchor:{x:6.5,y:2},
+		resetbutton_label:"reset",
+		resetbutton_labelposition:"bottom",
+		
 		perturbbutton_anchor:{x:10.5,y:2},
 		perturbbutton_label:"perturb",
 		perturbbutton_labelposition:"bottom",
@@ -76,9 +86,6 @@ export default {
 		radio_orientation_mem:"vertical",
 		radio_label_position_mem: "right",
 		radio_shape_mem:"rect",
-
-		
-
 
 	},
 	simulation: {

@@ -19,6 +19,7 @@ export default (d,i) => {
 	select(element).append("text").attr("class",styles.label)
 	.text(title).attr("x", -10)
 	.attr("y", -20)
+	.style("font-size", "16px")
 	
 	const base = select(element)
 		.attr("class",styles.widget+" "+styles.radio).attr("id", id)

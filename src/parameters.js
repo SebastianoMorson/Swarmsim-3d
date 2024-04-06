@@ -85,15 +85,20 @@ export default {
 	
 		viz_switch:{
 			label:"2D/3D",
-			default: true
+			default: false
 		},
 
 		freeze_phase: {
+			label:"Freezing phase",
 			default: false
 		},
+
 		advanced_settings: {
 			default: false
-		},
+		}
+
+		
+		
 		
 		
 		
