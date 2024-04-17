@@ -7,7 +7,7 @@
 
 export default {
 		dt:0.1,	//velocità
-		N:300,
+		N:600,
 		
 		agentsize: 5.0,
 		L:1.2, //1.3			//rappresenta ...

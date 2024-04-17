@@ -64,13 +64,28 @@ export default (container_id,config)=>{
 	// Trasforma il testo per spostarlo
 	text.attr("transform", "translate(40, 410)");
 
-	container.append("text")
-	.text("This tool is based on the complexity explorable Swårmalätørs by Dirk Brockmann.“ and hyperlink the word Swårmalätørs to https://www.complexity-explorables.org/explorables/swarmalators/")
-	.style("font-size", "10px") // Modifica la dimensione del font
-	.attr("x", -20)
-	.attr("y", -10)
-	
+	//container.append("text")
+	//.text("This tool is based on the complexity explorable Swårmalätørs by Dirk Brockmann.“ and hyperlink the word Swårmalätørs to https://www.complexity-explorables.org/explorables/swarmalators/")
+	//.style("font-size", "10px") // Modifica la dimensione del font
+	//.attr("x", -20)
+	//.attr("y", -10)
 
+	container.append("text")
+	.style("font-size", "10px") // Modifica la dimensione del font
+    .text("This tool is based on the complexity explorable ")
+	.append("a")
+    .attr("href", "https://www.complexity-explorables.org/explorables/swarmalators/")
+    .attr("target", "_blank") // Apre il link in una nuova finestra/tab
+    .text("Swårmalätørs")
+    .style("font-size", "10px") // Modifica la dimensione del font
+    .attr("x", -20)
+    .attr("y", -10);
+
+	container.append("text")
+    .text(" by Dirk Brockmann.")
+	.style("font-size", "10px") // Modifica la dimensione del font
+    .attr("x", -20)
+    .attr("y", -10);
 	
 
 	if (config.controls_border){
